@@ -53,3 +53,4 @@ The Careers form sends each application by email through the same FormSubmit inb
 ## Print catalogue prices
 Every product in the Print page catalogue shows an indicative price, unit and minimum quantity (the `PRICE` list in `print.html`). Prices were set slightly below typical 2026 Indian online print rates; the live-site prices (₹3 card, ₹19 letterhead, ₹50 brochure, ₹1,850 standee) are kept as they were. **Please review every price before going live.** Format: `name: [price per unit in ₹, unit, minimum qty, step]`.
 # avora-website
+# avora-website
