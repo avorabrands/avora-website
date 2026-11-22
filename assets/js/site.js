@@ -53,10 +53,11 @@ const darkTop = document.body.classList.contains('dark-top');
 
 function header() {
   const links = NAV.map(n => n.mega
-    ? `<li><button aria-haspopup="true" ${['design', 'print', 'kids'].includes(page) ? 'aria-current="page"' : ''}>Services ${I.chev}</button>
+    ? `<li><button aria-haspopup="true" ${['design', 'print', 'growth', 'kids'].includes(page) ? 'aria-current="page"' : ''}>Services ${I.chev}</button>
         <div class="mega" role="menu">
           <a href="design.html"><span class="ic">${I.pen}</span><span><strong>Design Studio</strong><small>Branding, websites, apps, social & packaging design</small></span></a>
           <a href="print.html"><span class="ic gold">${I.printer}</span><span><strong>Print & Merch</strong><small>Visiting cards, apparel, packaging, signage — delivered</small></span></a>
+          <a href="growth.html"><span class="ic">${I.spark}</span><span><strong>Growth Plans</strong><small>Monthly posts, reels, shoots & ads to grow your business</small></span></a>
           <a href="kids.html"><span class="ic kids">${I.palette}</span><span><strong>Avora Kids <em class="new-tag">New</em></strong><small>Creative kits, folk art & gifts made from kids' imagination</small></span></a>
         </div></li>`
     : `<li><a href="${n.href}" class="${n.cls || ''}" ${page === n.key ? 'aria-current="page"' : ''}>${n.label}</a></li>`).join('');
@@ -80,6 +81,7 @@ function header() {
       <a href="index.html">Home</a>
       <a href="design.html">Design Studio</a>
       <a href="print.html">Print & Merch</a>
+      <a href="growth.html">Growth Plans</a>
       <a href="kids.html">Avora Kids <small>NEW</small></a>
       <a href="work.html">Work</a>
       <a href="about.html">About</a>
@@ -109,7 +111,7 @@ function footer() {
         <div><h5>Services</h5><ul>
           <li><a href="design.html#branding">Branding & Identity</a></li><li><a href="design.html#website">Website Design</a></li>
           <li><a href="design.html#app">Mobile App Design</a></li><li><a href="design.html#social">Social Media Design</a></li>
-          <li><a href="print.html">Print & Merch</a></li><li><a href="kids.html">Avora Kids</a></li></ul></div>
+          <li><a href="print.html">Print & Merch</a></li><li><a href="growth.html">Growth Plans</a></li><li><a href="kids.html">Avora Kids</a></li></ul></div>
         <div><h5>Company</h5><ul>
           <li><a href="work.html">Our Work</a></li><li><a href="about.html">About Us</a></li><li><a href="blog.html">Insights</a></li>
           <li><a href="careers.html">Careers</a></li><li><a href="contact.html">Contact</a></li></ul></div>
