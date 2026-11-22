@@ -1,0 +1,141 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/diwali",
+      "destination": "/print",
+      "permanent": false
+    },
+    {
+      "source": "/landing-page/landing.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/landing-page/landing",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/design-services",
+      "destination": "/design",
+      "permanent": true
+    },
+    {
+      "source": "/print-services",
+      "destination": "/print",
+      "permanent": true
+    },
+    {
+      "source": "/blog-post",
+      "destination": "/post?p=brand-identity",
+      "permanent": true
+    },
+    {
+      "source": "/blog-post-ux-mistakes",
+      "destination": "/post?p=ux-mistakes",
+      "permanent": true
+    },
+    {
+      "source": "/blog-post-social-media-sizes",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/blog-post-cmyk-vs-rgb",
+      "destination": "/post?p=cmyk-vs-rgb",
+      "permanent": true
+    },
+    {
+      "source": "/blog-post-colour-psychology",
+      "destination": "/post?p=colour-psychology",
+      "permanent": true
+    },
+    {
+      "source": "/blog-post-madanapalle-branding",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/product-roundneck-tshirt",
+      "destination": "/print",
+      "permanent": true
+    },
+    {
+      "source": "/product-polo-tshirt",
+      "destination": "/print",
+      "permanent": true
+    },
+    {
+      "source": "/product-combo-kit",
+      "destination": "/print",
+      "permanent": true
+    },
+    {
+      "source": "/case-study-bhaktilok",
+      "destination": "/case?p=bhaktilok",
+      "permanent": true
+    },
+    {
+      "source": "/case-study-bhaktitv",
+      "destination": "/case?p=bhaktitv",
+      "permanent": true
+    },
+    {
+      "source": "/case-study-cashalert",
+      "destination": "/case?p=cashalert-app",
+      "permanent": true
+    },
+    {
+      "source": "/case-study-cashalert-branding",
+      "destination": "/case?p=cashalert-brand",
+      "permanent": true
+    },
+    {
+      "source": "/case-study-localservice",
+      "destination": "/case?p=localservice-web",
+      "permanent": true
+    },
+    {
+      "source": "/case-study-localservice-branding",
+      "destination": "/case?p=localservice-brand",
+      "permanent": true
+    },
+    {
+      "source": "/case-study-picxel",
+      "destination": "/case?p=picxel-app",
+      "permanent": true
+    },
+    {
+      "source": "/case-study-picxel-branding",
+      "destination": "/case?p=picxel-brand",
+      "permanent": true
+    },
+    {
+      "source": "/case-study-swagat",
+      "destination": "/case?p=swagat",
+      "permanent": true
+    },
+    {
+      "source": "/case-study-tiara-social",
+      "destination": "/case?p=tiara",
+      "permanent": true
+    },
+    {
+      "source": "/case-study-veluguvani",
+      "destination": "/case?p=veluguvani",
+      "permanent": true
+    },
+    {
+      "source": "/case-study-wanderly",
+      "destination": "/case?p=wanderly",
+      "permanent": true
+    },
+    {
+      "source": "/case-study-thumbnails",
+      "destination": "/case?p=thumbnails",
+      "permanent": true
+    }
+  ]
+}
