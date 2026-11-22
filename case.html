@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Project — Avora Brands</title>
+<title>Project | Avora Brands</title>
 <meta name="description" content="Avora Brands case study.">
 <meta name="theme-color" content="#061226">
 <link rel="icon" type="image/png" href="images/favicon-512.png?v=2">
@@ -22,7 +22,7 @@
   (() => {
     const id = new URLSearchParams(location.search).get('p');
     const i = Math.max(0, PROJECTS.findIndex(p => p.id === id)), p = PROJECTS[i], next = PROJECTS[(i + 1) % PROJECTS.length];
-    document.title = `${p.client} — ${CATS[p.cat]} Project | Avora Brands`;
+    document.title = `${p.client}, ${CATS[p.cat]} Project | Avora Brands`;
     document.querySelector('meta[name=description]').content = p.summary;
     const g = /-thumb\./.test(p.cover) ? p.gallery : [p.cover, ...p.gallery];
     document.getElementById('cs').innerHTML = `

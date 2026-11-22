@@ -1,5 +1,5 @@
 /* ============================================================
-   Avora Brands — shared chrome + interactions
+   Avora Brands, shared chrome + interactions
    ============================================================ */
 document.documentElement.classList.remove('no-js');
 document.documentElement.classList.add('js');
@@ -56,7 +56,7 @@ function header() {
     ? `<li><button aria-haspopup="true" ${['design', 'print', 'growth', 'kids'].includes(page) ? 'aria-current="page"' : ''}>Services ${I.chev}</button>
         <div class="mega" role="menu">
           <a href="design.html"><span class="ic">${I.pen}</span><span><strong>Design Studio</strong><small>Branding, websites, apps, social & packaging design</small></span></a>
-          <a href="print.html"><span class="ic gold">${I.printer}</span><span><strong>Print & Merch</strong><small>Visiting cards, apparel, packaging, signage — delivered</small></span></a>
+          <a href="print.html"><span class="ic gold">${I.printer}</span><span><strong>Print & Merch</strong><small>Visiting cards, apparel, packaging, signage, delivered</small></span></a>
           <a href="growth.html"><span class="ic">${I.spark}</span><span><strong>Growth Plans</strong><small>Monthly posts, reels, shoots & ads to grow your business</small></span></a>
           <a href="kids.html"><span class="ic kids">${I.palette}</span><span><strong>Avora Kids <em class="new-tag">New</em></strong><small>Creative kits, folk art & gifts made from kids' imagination</small></span></a>
         </div></li>`
@@ -100,7 +100,7 @@ function footer() {
       <div class="foot-top">
         <div class="foot-brand">
           <a href="index.html" class="brand" style="height:44px">${logoSVG()}</a>
-          <p>Design, print and delivery under one roof — for startups and growing businesses in Bengaluru, Madanapalle and across India.</p>
+          <p>Design, print and delivery under one roof, for startups and growing businesses in Bengaluru, Madanapalle and across India.</p>
           <div class="socials">
             <a href="${SITE.instagram}" target="_blank" rel="noopener" aria-label="Instagram">${I.ig}</a>
             <a href="${SITE.linkedin}" target="_blank" rel="noopener" aria-label="LinkedIn">${I.li}</a>
@@ -140,7 +140,7 @@ $('[data-footer]')?.insertAdjacentHTML('afterbegin', footer());
 window.renderIcons = (root = document) => $$('i[data-i]', root).forEach(e => e.outerHTML = I[e.dataset.i] || '');
 window.renderWaLinks = (root = document) => $$('[data-wa-link]', root).forEach(a => { a.href = wa(a.dataset.waLink); a.target = '_blank'; a.rel = 'noopener'; });
 window.workCard = (p, i = 0) => `<a class="work-card reveal" style="--d:${(i % 3) * .08}s" href="case.html?p=${p.id}" data-cat="${p.cat}">
-  <div class="media"><img src="${p.cover}" alt="${p.client} — ${p.title}" loading="lazy"><span class="chip">${CATS[p.cat]}</span><span class="go">${I.arrow}</span></div>
+  <div class="media"><img src="${p.cover}" alt="${p.client}, ${p.title}" loading="lazy"><span class="chip">${CATS[p.cat]}</span><span class="go">${I.arrow}</span></div>
   <h3>${p.client}</h3><p>${p.summary}</p><span class="outcome">✦ ${p.outcome}</span></a>`;
 const FEATURED = ['tiara', 'veluguvani', 'cashalert-brand', 'bhaktitv', 'localservice-web', 'picxel-app', 'swagat'];
 $$('[data-work]').forEach(el => {
@@ -150,7 +150,7 @@ $$('[data-work]').forEach(el => {
 $$('[data-reviews]').forEach(el => el.innerHTML = REVIEWS.map((r, i) => `<figure class="review ${i === 0 ? 'big' : ''} reveal" style="--d:${i * .08}s">
   <span class="stars-5">★★★★★</span><blockquote>“${r.text}”</blockquote>
   <figcaption class="who"><span class="av" style="background:${r.color}">${r.name[0]}</span><span><b>${r.name}</b><small>Google review</small></span></figcaption></figure>`).join(''));
-$$('[data-faces]').forEach(el => { const all = [...TEAM.cofounders, ...TEAM.team]; el.innerHTML = all.slice(0, 4).map(m => `<img src="${m.img}" alt="${m.name}" title="${m.name} — ${m.role}" loading="lazy">`).join('') + (all.length > 4 ? `<a class="face-more" href="about.html" aria-label="Meet ${all.length - 4} more team members">${all.length - 4}+</a>` : ''); });
+$$('[data-faces]').forEach(el => { const all = [...TEAM.cofounders, ...TEAM.team]; el.innerHTML = all.slice(0, 4).map(m => `<img src="${m.img}" alt="${m.name}" title="${m.name}, ${m.role}" loading="lazy">`).join('') + (all.length > 4 ? `<a class="face-more" href="about.html" aria-label="Meet ${all.length - 4} more team members">${all.length - 4}+</a>` : ''); });
 renderIcons(); renderWaLinks();
 
 /* header state */
@@ -243,8 +243,8 @@ $$('[data-news]').forEach(f => f.addEventListener('submit', async e => {
     const r = await fetch('https://formsubmit.co/ajax/' + SITE.newsletterInbox, {
       method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       body: JSON.stringify({
-        email, _subject: 'New newsletter subscriber — Avora Brands', _template: 'box', _captcha: 'false',
-        _autoresponse: "Hi there,\n\nThanks for joining the Avora Brands list! Once a month we'll send you practical branding, print and design tips for growing businesses — no spam, ever.\n\nNeed something designed or printed sooner? Just reply to this email or WhatsApp us on " + SITE.phone + ".\n\nWarm wishes,\nTeam Avora Brands\n" + SITE.address
+        email, _subject: 'New newsletter subscriber, Avora Brands', _template: 'box', _captcha: 'false',
+        _autoresponse: "Hi there,\n\nThanks for joining the Avora Brands list! Once a month we'll send you practical branding, print and design tips for growing businesses, no spam, ever.\n\nNeed something designed or printed sooner? Just reply to this email or WhatsApp us on " + SITE.phone + ".\n\nWarm wishes,\nTeam Avora Brands\n" + SITE.address
       })
     });
     const d = await r.json().catch(() => ({}));

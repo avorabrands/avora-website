@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Insights — Avora Brands</title>
+<title>Insights | Avora Brands</title>
 <meta name="description" content="A guide from the Avora Brands studio.">
 <meta name="theme-color" content="#061226">
 <link rel="icon" type="image/png" href="images/favicon-512.png?v=2">
@@ -33,7 +33,7 @@
     const i = Math.max(0, POSTS.findIndex(p => p.id === id)), p = POSTS[i], body = POST_BODIES[p.id];
     const more = POSTS.filter(x => x.id !== p.id).slice(0, 3);
     const fmt = d => new Date(d).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
-    document.title = `${p.title} — Avora Brands Insights`;
+    document.title = `${p.title}, Avora Brands Insights`;
     document.querySelector('meta[name=description]').content = p.excerpt;
     const url = location.href;
     document.getElementById('post').innerHTML = `
@@ -53,7 +53,7 @@
         <a class="btn btn--sm btn--ghost" target="_blank" rel="noopener" href="https://wa.me/?text=${encodeURIComponent(p.title + ' ' + url)}">WhatsApp</a>
         <a class="btn btn--sm btn--ghost" target="_blank" rel="noopener" href="https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}">LinkedIn</a>
         <button class="btn btn--sm btn--ghost" type="button" id="copy">Copy link</button></div>
-      <div class="post-cta"><div><b style="font-size:20px">Need this done for your business?</b><p>Our studio handles it end-to-end — free 15-minute call.</p></div><a class="btn btn--gold" href="contact.html">Get a quote <i data-i="arrow"></i></a></div>
+      <div class="post-cta"><div><b style="font-size:20px">Need this done for your business?</b><p>Our studio handles it end-to-end, free 15-minute call.</p></div><a class="btn btn--gold" href="contact.html">Get a quote <i data-i="arrow"></i></a></div>
     </div></article>
     <section class="section section--white"><div class="container">
       <div class="sec-head"><div><span class="eyebrow">Keep reading</span><h2 class="h2 mt-8">More insights</h2></div><a class="btn btn--ghost" href="blog.html">All articles</a></div>

@@ -1751,3 +1751,6 @@ body[data-page="home"] .sec-head .g-badge{justify-content:center;margin-left:aut
 .gp-terms--3{grid-template-columns:repeat(3,1fr)}
 @media (max-width:900px){.gp-svcs,.gp-terms--3{grid-template-columns:1fr 1fr}}
 @media (max-width:640px){.gp-svcs,.gp-terms--3{grid-template-columns:1fr}}
+
+/* Hero highlighted words: slightly smaller and lighter */
+h1 .serif.gold-text,.hero h1 .serif,.page-hero h1 .serif,.ax-title .serif{font-size:.9em;font-weight:700}

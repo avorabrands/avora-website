@@ -1,5 +1,5 @@
 /* ============================================================
-   Avora Brands — site content
+   Avora Brands, site content
    Images are served from the live site so nothing has to be re-uploaded.
    ============================================================ */
 const IMG = 'images/';
