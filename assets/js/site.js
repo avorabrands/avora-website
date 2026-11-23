@@ -62,9 +62,6 @@ function header() {
         </div></li>`
     : `<li><a href="${n.href}" class="${n.cls || ''}" ${page === n.key ? 'aria-current="page"' : ''}>${n.label}</a></li>`).join('');
   return `
-  <div class="announce" role="region" aria-label="Announcement">
-    <div class="an-track"><div class="an-row"><span class="an-i"><b>Branding, websites, apps &amp; print</b></span><span class="an-s" aria-hidden="true">${I.spark}</span><span class="an-i">Custom gifts &amp; branded merch</span><span class="an-s" aria-hidden="true">${I.spark}</span><span class="an-i">Designed, printed and delivered under one roof</span><span class="an-s" aria-hidden="true">${I.spark}</span><span class="an-i"><a href="contact.html">Get a free quote →</a></span><span class="an-s" aria-hidden="true">${I.spark}</span></div><div class="an-row" aria-hidden="true"><span class="an-i"><b>Branding, websites, apps &amp; print</b></span><span class="an-s" aria-hidden="true">${I.spark}</span><span class="an-i">Custom gifts &amp; branded merch</span><span class="an-s" aria-hidden="true">${I.spark}</span><span class="an-i">Designed, printed and delivered under one roof</span><span class="an-s" aria-hidden="true">${I.spark}</span><span class="an-i"><a href="contact.html">Get a free quote →</a></span><span class="an-s" aria-hidden="true">${I.spark}</span></div></div>
-  </div>
   <header class="site-header ${darkTop ? 'on-dark-top' : ''}">
     <div class="container nav">
       <a href="index.html" class="brand" aria-label="Avora Brands home">${logoSVG()}</a>

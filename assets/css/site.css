@@ -1405,7 +1405,7 @@ input:invalid,textarea:invalid,select:invalid{box-shadow:none}
 
 /* ---------- Hero fits the laptop viewport (below the navbar) ---------- */
 @media (min-width:1001px){
-  .hero{min-height:min(calc(100svh - 40px),980px)}
+  .hero{min-height:min(100svh,980px)}
   .hero-grid{grid-template-columns:1.25fr .75fr;gap:40px;padding:32px 0 40px}
   .hero h1.h-display{font-size:clamp(64px,min(5.4vw,9.4vh),76px)}
   .hero .chip{margin-bottom:0}
@@ -1581,7 +1581,7 @@ body[data-page="home"] .sec-head .g-badge{justify-content:center;margin-left:aut
 
 /* KIDS hero: fits one laptop screen below the header */
 @media (min-width:1001px){
-  body.kids .world{min-height:100svh;padding:118px 0 0}
+  body.kids .world{min-height:100svh;padding:78px 0 0}
   body.kids .world .container{grid-template-columns:1.2fr .8fr;gap:24px;padding-bottom:70px}
   body.kids .h-world{font-size:clamp(40px,min(4.6vw,8.4vh),68px);margin-top:14px}
   body.kids .w-lead{font-size:17px;margin-top:14px;max-width:520px}
@@ -1589,7 +1589,7 @@ body[data-page="home"] .sec-head .g-badge{justify-content:center;margin-left:aut
   body.kids .balloons{height:min(470px,62vh)}
 }
 @media (min-width:1001px) and (max-height:760px){
-  body.kids .world{padding-top:104px}
+  body.kids .world{padding-top:64px}
   body.kids .world .container{padding-bottom:56px}
   body.kids .h-world{font-size:clamp(38px,min(4.2vw,7.6vh),58px)}
   body.kids .w-lead{font-size:16px}
@@ -1601,7 +1601,7 @@ body[data-page="home"] .sec-head .g-badge{justify-content:center;margin-left:aut
 }
 /* kids hero starts below the (announcement + header) — fill exactly the rest of the screen */
 @media (min-width:1001px){
-  body.kids .world{min-height:calc(100svh - 118px);padding-top:30px}
+  body.kids .world{min-height:calc(100svh - 78px);padding-top:30px}
   body.kids .world .container{padding-bottom:40px}
   body.kids .balloons{transform:none;height:min(440px,100%)}
 }
