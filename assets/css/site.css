@@ -1754,3 +1754,6 @@ body[data-page="home"] .sec-head .g-badge{justify-content:center;margin-left:aut
 
 /* Hero highlighted words: slightly smaller and lighter */
 h1 .serif.gold-text,.hero h1 .serif,.page-hero h1 .serif,.ax-title .serif{font-size:.9em;font-weight:700}
+
+/* Journey cards: blue step label on a white pill for readability */
+.j-n{display:inline-block;align-self:flex-start;width:fit-content;background:#fff;color:#0B68AB;padding:5px 12px;border-radius:999px;margin-bottom:8px;line-height:1.2}
