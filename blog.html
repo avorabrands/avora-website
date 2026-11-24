@@ -117,7 +117,7 @@
       <div class="ins-grid" id="posts"></div>
 
       <div class="ins-ask reveal">
-        <div class="l"><div class="fc"><img src="images/founder.jpg" alt=""><img src="images/about-namratha.jpg" alt=""><img src="images/about-vignesh.jpg" alt=""></div>
+        <div class="l"><div class="fc"><img src="images/founder.jpg" alt=""><img src="images/about-namratha.jpg" alt=""><img src="images/about-praveen.jpg" alt=""><img src="images/about-vignesh.jpg" alt=""></div>
           <div><b>Have a question we haven't written about?</b><p>Ask us on WhatsApp. One of us will reply, usually the same day.</p></div></div>
         <a class="btn btn--gold" id="askWa" href="contact.html" target="_blank" rel="noopener">Ask on WhatsApp <i data-i="arrow"></i></a>
       </div>
@@ -128,8 +128,8 @@
 <script src="assets/js/data.js"></script>
 <script>
   (() => {
-    const FACE = { 'Reddy Pavan M': 'images/founder.jpg', 'Namratha E': 'images/about-namratha.jpg', 'Vignesh': 'images/about-vignesh.jpg' };
-    const ROLE = { 'Reddy Pavan M': 'Founder', 'Namratha E': 'Co-Founder', 'Vignesh': 'Business Manager' };
+    const FACE = { 'Reddy Pavan M': 'images/founder.jpg', 'Namratha E': 'images/about-namratha.jpg', 'Praveen Devarakonda': 'images/about-praveen.jpg', 'Vignesh': 'images/about-vignesh.jpg' };
+    const ROLE = { 'Reddy Pavan M': 'Founder', 'Namratha E': 'Co-Founder', 'Praveen Devarakonda': 'Co-Founder', 'Vignesh': 'Business Manager' };
     const fmt = d => new Date(d).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
     const arrow = '<span class="ic"><i data-i="arrow"></i></span>';
     const by = p => `<div class="ins-by"><img src="${FACE[p.author]}" alt=""><div><b>${p.author}</b><small>${p.role} · ${fmt(p.date)}</small></div></div>`;
