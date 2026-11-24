@@ -1791,3 +1791,12 @@ h1 .serif.gold-text,.hero h1 .serif,.page-hero h1 .serif,.ax-title .serif{font-s
 .logos-band{padding:40px 0}
 .logos-band + .section{padding-top:56px}
 @media (max-width:760px){.logos-band{padding:32px 0}.logos-band + .section{padding-top:48px}}
+
+/* Less blue: accent words become a soft underline, eyebrows go neutral on light sections */
+.section:not(.section--dark) .blue-text,.section--white .blue-text{color:inherit;text-decoration:underline;text-decoration-color:rgba(14,134,220,.4);text-decoration-thickness:.07em;text-underline-offset:.16em;text-decoration-skip-ink:none}
+.section:not(.section--dark) .eyebrow{color:#5E6E86}
+.section:not(.section--dark) .eyebrow::before{background:#5E6E86}
+.process.light .step .n{color:var(--navy-900,#0A2344)}
+.process.light .step .t{color:#5E6E86}
+.process.light.in .step .n{background:var(--navy-900,#0A2344);color:#fff;border-color:transparent}
+.process.light .bar{background:var(--navy-900,#0A2344)}
