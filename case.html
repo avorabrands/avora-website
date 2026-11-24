@@ -27,15 +27,22 @@
     document.querySelector('meta[name=description]').content = p.summary;
     const g = /-thumb\./.test(p.cover) ? p.gallery : [p.cover, ...p.gallery];
     document.getElementById('cs').innerHTML = `
-    <section class="page-hero" style="padding-bottom:130px">
-      <div class="stars"></div>
-      <div class="container on-dark">
+    <section class="page-hero work-hero3 cs-hero">
+      <div class="sp-bg" style="background-image:url('${g[0] || p.cover}')" aria-hidden="true"></div>
+      <div class="container on-dark sp-wrap">
         <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><a href="work.html">Work</a><span>/</span><span>${p.client}</span></nav>
-        <span class="chip chip--gold reveal">${CATS[p.cat]}</span>
-        <p class="mt-24 reveal" style="font-weight:700;color:#A9B1C7;font-size:18px">${p.client}</p>
-        <h1 class="h1 mt-8" data-split>${p.title}</h1>
-        <p class="lead reveal" style="--d:.3s">${p.summary}</p>
-        ${p.live ? `<div class="btn-row reveal" style="margin-top:28px"><a class="btn btn--gold" href="${p.live}" target="_blank" rel="noopener">Visit live site <i data-i="arrow"></i></a></div>` : ''}
+        <div class="sp-main">
+          <div class="sp-copy">
+            <span class="chip chip--gold reveal">${CATS[p.cat]}</span>
+            <div class="sp-text in">
+              <p class="cs-client">${p.client}</p>
+              <h1 data-split>${p.title}</h1>
+              <p>${p.summary}</p>
+              ${p.live ? `<div class="btn-row"><a class="btn btn--gold" href="${p.live}" target="_blank" rel="noopener">Visit live site <i data-i="arrow"></i></a></div>` : ''}
+            </div>
+          </div>
+          <a class="sp-frame" href="#gallery" data-lb="0" aria-label="View ${p.client} images"><img class="in" src="${g[0] || p.cover}" alt="${p.client}: ${p.title}"></a>
+        </div>
       </div>
     </section>
     <section class="section--tight"><div class="container">
@@ -50,15 +57,32 @@
         <div class="cs-sec reveal" id="results"><span class="eyebrow">Highlights</span><h2 class="mt-8">The outcome</h2><div class="result-list">${p.results.map(([k, v]) => `<div><small>${k}</small>${v}</div>`).join('')}</div></div>
         <div class="cs-sec reveal" id="deliverables"><span class="eyebrow">Deliverables</span><h2 class="mt-8">What we handed over</h2><div class="deliv">${p.deliverables.map(d => `<div>${d}</div>`).join('')}</div></div>
         ${g.length ? `<div class="cs-sec" id="gallery"><span class="eyebrow">Gallery</span><h2 class="mt-8">A closer look</h2>
-          <div class="gallery">${g.map((s, k) => `<img class="reveal ${g.length % 2 && k === 0 ? 'wide' : ''}" src="${s}" alt="${p.client} design detail ${k + 1}" loading="lazy">`).join('')}</div></div>` : ''}
+          <div class="gallery">${g.map((s, k) => `<img class="reveal ${g.length % 2 && k === 0 ? 'wide' : ''}" src="${s}" alt="${p.client} design detail ${k + 1}" loading="lazy" data-lb="${k}" tabindex="0" role="button" aria-label="Open image ${k + 1} of ${g.length}">`).join('')}</div></div>` : ''}
       </div>
     </div></section>
     <section class="section" style="padding-top:0"><div class="container">
       <div class="grid g-2">
         <a class="next-proj reveal" href="case.html?p=${next.id}"><div><small>Next project</small><h3 class="h3 mt-8">${next.client}</h3><p style="color:#A9B1C7">${next.title}</p></div><span class="go"><i data-i="arrow"></i></span></a>
-        <a class="next-proj reveal" style="background:linear-gradient(135deg,#0E86DC,#0B68AB);color:#fff" href="${wa('Hi Avora! I saw the ' + p.client + ' case study and want something similar.')}" target="_blank" rel="noopener"><div><small style="color:#0B68AB">Like this?</small><h3 class="h3 mt-8">Start a similar project</h3><p style="color:#0B68AB">Free 15-minute call</p></div><span class="go" style="background:var(--navy-950);color:#fff"><i data-i="arrow"></i></span></a>
+        <a class="next-proj reveal" style="background:linear-gradient(135deg,#0E86DC,#0B68AB);color:#fff" href="${wa('Hi Avora! I saw the ' + p.client + ' case study and want something similar.')}" target="_blank" rel="noopener"><div><small style="color:rgba(255,255,255,.85)">Like this?</small><h3 class="h3 mt-8">Start a similar project</h3><p style="color:rgba(255,255,255,.9)">Free 15-minute call</p></div><span class="go" style="background:var(--navy-950);color:#fff"><i data-i="arrow"></i></span></a>
       </div>
     </div></section>`;
+    /* gallery lightbox */
+    let cur = 0, box = null, wheelLock = 0, touchX = null;
+    const show = (n) => { cur = (n + g.length) % g.length; box.querySelector('img').src = g[cur]; box.querySelector('img').alt = p.client + ' image ' + (cur + 1); box.querySelector('.lb-count').textContent = (cur + 1) + ' / ' + g.length; };
+    const close = () => { if (!box) return; box.remove(); box = null; document.body.style.overflow = ''; document.removeEventListener('keydown', onKey); };
+    const onKey = (e) => { if (e.key === 'Escape') close(); else if (e.key === 'ArrowRight') show(cur + 1); else if (e.key === 'ArrowLeft') show(cur - 1); };
+    const open = (n) => {
+      box = document.createElement('div'); box.className = 'lb'; box.setAttribute('role', 'dialog'); box.setAttribute('aria-modal', 'true'); box.setAttribute('aria-label', 'Image viewer');
+      box.innerHTML = '<button class="lb-x" aria-label="Close">&times;</button>' + (g.length > 1 ? '<button class="lb-nav lb-prev" aria-label="Previous image">&#8249;</button><button class="lb-nav lb-next" aria-label="Next image">&#8250;</button>' : '') + '<img alt=""><div class="lb-count"></div>';
+      document.body.appendChild(box); document.body.style.overflow = 'hidden'; show(n);
+      box.addEventListener('click', (e) => { if (e.target === box || e.target.classList.contains('lb-x')) close(); else if (e.target.classList.contains('lb-next')) show(cur + 1); else if (e.target.classList.contains('lb-prev')) show(cur - 1); });
+      box.addEventListener('wheel', (e) => { e.preventDefault(); const t = Date.now(); if (t - wheelLock < 350 || Math.abs(e.deltaY) < 8) return; wheelLock = t; show(cur + (e.deltaY > 0 ? 1 : -1)); }, { passive: false });
+      box.addEventListener('touchstart', (e) => { touchX = e.touches[0].clientX; }, { passive: true });
+      box.addEventListener('touchend', (e) => { if (touchX === null) return; const d = e.changedTouches[0].clientX - touchX; touchX = null; if (Math.abs(d) > 40) show(cur + (d < 0 ? 1 : -1)); });
+      document.addEventListener('keydown', onKey);
+    };
+    document.getElementById('cs').addEventListener('click', (e) => { const t = e.target.closest('[data-lb]'); if (!t) return; e.preventDefault(); open(+t.dataset.lb); });
+    document.getElementById('cs').addEventListener('keydown', (e) => { const t = e.target.closest('img[data-lb]'); if (t && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); open(+t.dataset.lb); } });
   })();
 </script>
 <script src="assets/js/site.js"></script>

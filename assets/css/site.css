@@ -1765,3 +1765,23 @@ h1 .serif.gold-text,.hero h1 .serif,.page-hero h1 .serif,.ax-title .serif{font-s
 .stars{display:none!important}
 
 .logo-item img[src*="logo-mist"]{height:50px;width:50px}
+
+/* Project page hero: image on the right, like the Work page */
+.cs-hero{padding-bottom:80px}
+.cs-hero .sp-main{min-height:0;margin-top:30px}
+.cs-hero .sp-text h1{font-size:clamp(32px,3.6vw,52px)}
+.cs-hero .cs-client{font-weight:700;color:#A9B1C7;font-size:17px;margin-top:20px;max-width:none}
+.cs-hero .sp-frame{cursor:zoom-in}
+@media (max-width:860px){.cs-hero{padding:130px 0 56px}}
+/* Gallery lightbox */
+.gallery img[data-lb]{cursor:zoom-in}
+.lb{position:fixed;inset:0;z-index:300;background:rgba(4,10,22,.94);display:flex;align-items:center;justify-content:center;padding:56px 72px;animation:lbIn .25s ease}
+@keyframes lbIn{from{opacity:0}}
+.lb img{max-width:100%;max-height:100%;object-fit:contain;border-radius:12px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.lb-x,.lb-nav{position:absolute;border:0;cursor:pointer;color:#fff;background:rgba(255,255,255,.12);display:grid;place-items:center;line-height:1;transition:background .2s}
+.lb-x:hover,.lb-nav:hover{background:rgba(255,255,255,.24)}
+.lb-x{top:18px;right:18px;width:44px;height:44px;border-radius:50%;font-size:28px}
+.lb-nav{top:50%;transform:translateY(-50%);width:52px;height:52px;border-radius:50%;font-size:36px;padding-bottom:4px}
+.lb-prev{left:16px}.lb-next{right:16px}
+.lb-count{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);color:#C9D0E2;font-size:13px;font-weight:600;letter-spacing:.05em}
+@media (max-width:640px){.lb{padding:64px 12px}.lb-nav{width:42px;height:42px;font-size:30px;top:auto;bottom:14px;transform:none}.lb-prev{left:14px}.lb-next{right:14px}}
