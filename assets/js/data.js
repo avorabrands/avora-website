@@ -33,6 +33,19 @@ window.CATS = {
 
 window.PROJECTS = [
   {
+    id: 'mist-salon', client: 'MiST Unisex Salon', title: 'A premium salon, now bookable online', cat: 'website',
+    live: 'https://mistunisexsalon.com',
+    cover: img('mist-home.jpg'), gallery: ['mist-about.jpg', 'mist-services.jpg', 'mist-why.jpg'].map(img),
+    summary: 'A website for a premium unisex salon in Kurnool covering hair, skin, makeup, bridal and clinical treatments, with online appointment booking.',
+    outcome: 'A salon site that feels as premium as the studio',
+    industry: 'Beauty & Wellness', services: 'Website Design, Appointment Booking, Brand Styling', timeline: 'Live now', year: '2026',
+    overview: 'MiST is a unisex salon, PMU and laser studio in Kurnool, Andhra Pradesh. They wanted a website that matched the calm, elegant feel of the studio and made it easy for new clients to book.',
+    challenge: 'A salon sells a feeling before it sells a service. The site had to look premium, explain a wide range of treatments clearly, and still lead visitors to one action: booking an appointment.',
+    solution: 'We designed a warm, editorial look in deep maroon and rose, led by a full-screen studio hero and a clear promise. Services are grouped into signature categories, a short "Why choose MiST" section builds trust, and a booking popup is one tap away from every page.',
+    results: [['Booking', 'Appointment form on every page'], ['Services', 'Ten categories, clearly grouped'], ['Look', 'Premium maroon and rose brand feel'], ['Reach', 'Call, map and WhatsApp always one tap away']],
+    deliverables: ['Responsive website design', 'Hero and brand styling', 'Services showcase', 'Appointment booking popup', 'Gallery and reviews sections', 'Contact, map and WhatsApp shortcuts']
+  },
+  {
     id: 'tiara', client: 'VTIARA Hair & Skin Clinic', title: 'Clinical trust, in a thumb-stopping ad', cat: 'social',
     cover: img('tiara-social1.jpg'), gallery: ['tiara-social2.jpg', 'tiara-social3.jpg', 'tiara-social4.jpg'].map(img),
     summary: 'Instagram and display ad creatives for three treatment campaigns at an Indiranagar dermatology clinic.',

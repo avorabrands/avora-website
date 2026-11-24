@@ -137,5 +137,16 @@
       "destination": "/case?p=thumbnails",
       "permanent": true
     }
+  ],
+  "headers": [
+    {
+      "source": "/((?!assets|images|.*\\..*).*)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/html; charset=utf-8"
+        }
+      ]
+    }
   ]
 }
