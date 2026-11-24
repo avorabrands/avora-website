@@ -1785,3 +1785,4 @@ h1 .serif.gold-text,.hero h1 .serif,.page-hero h1 .serif,.ax-title .serif{font-s
 .lb-prev{left:16px}.lb-next{right:16px}
 .lb-count{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);color:#C9D0E2;font-size:13px;font-weight:600;letter-spacing:.05em}
 @media (max-width:640px){.lb{padding:64px 12px}.lb-nav{width:42px;height:42px;font-size:30px;top:auto;bottom:14px;transform:none}.lb-prev{left:14px}.lb-next{right:14px}}
+@media (max-width:560px){.logo-item img[src*="logo-mist"]{height:38px;width:38px;flex:none}}
