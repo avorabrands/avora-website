@@ -22,7 +22,7 @@ window.wa = (msg) => `https://wa.me/${SITE.phoneRaw}?text=${encodeURIComponent(m
 
 window.CLIENT_LOGOS = [
   ['logo-bhakti.png', 'Bhakti TV'], ['logo-cashalert.png', 'CashAlert'], ['logo-spacewire.png', 'Spacewire Tech'],
-  ['logo-northbean.png', 'NorthBean Interiors'], ['logo-tiara.png', 'VTIARA Hair & Skin Clinic'], ['logo-picxel.png', 'Picxel AI'],
+  ['logo-northbean.png', 'NorthBean Interiors'], ['logo-tiara.png', 'VTIARA Hair & Skin Clinic'], ['logo-mist.png', 'MiST Unisex Salon'], ['logo-picxel.png', 'Picxel AI'],
   ['logo-localservice.png', 'Local Service Finder'], ['logo-swagat.png', 'Swagat Stay'], ['logo-innovision.png', 'Innovision'],
   ['logo-nijam.png', 'Nijam Maa Naijam'], ['logo-vydehi.png', 'Vydehi Institute of Medical Sciences']
 ].map(([f, n]) => ({ src: img(f), name: n }));
