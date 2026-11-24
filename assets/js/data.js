@@ -234,6 +234,17 @@ window.REVIEWS = [
 
 window.POSTS = [
  {
+  "id": "website-build",
+  "title": "How We Build Fast Websites for Small Businesses",
+  "cat": "Web Design",
+  "excerpt": "Why simple builds, light images and clean SEO basics matter more than fancy tools, with lessons from our own site and the MiST Unisex Salon site.",
+  "author": "Praveen Devarakonda",
+  "role": "Co-Founder & Technical Lead",
+  "date": "2026-11-24",
+  "img": "images/post-website.jpg",
+  "read": "5 min read"
+ },
+ {
   "id": "brand-identity",
   "title": "How to Build a Strong Brand Identity for Your Small Business",
   "cat": "Branding",
