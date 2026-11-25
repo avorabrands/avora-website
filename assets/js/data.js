@@ -234,20 +234,17 @@ window.PROJECTS = [
 /* People. `about` is one or two plain sentences on what they are responsible for. */
 window.TEAM = {
   founder: { name: 'Reddy Pavan M', role: 'Founder & CEO', img: img('founder.jpg'),
-    about: 'Started Avora as a UI/UX designer. Shapes the direction of each project and works on UX for apps and websites.',
+    about: 'UI/UX designer. Shapes the direction of each project.',
     skills: 'UI/UX · Product design · Direction' },
   cofounders: [
     { name: 'Namratha E', role: 'Co-Founder & Creative Director', img: img('about-namratha.jpg'),
-      about: 'Leads the design studio: brand identities, app screens and print, from the first sketch to the final proof.',
-      skills: 'Brand identity · UI/UX · Print & packaging' },
+      about: 'Leads design: brand identities, app screens and print.' },
     { name: 'Praveen Devarakonda', role: 'Co-Founder & Technical Lead', img: img('about-praveen-v2.jpg'),
-      about: 'Builds what the studio designs: websites, app prototypes and the tech behind every launch.',
-      skills: 'Web development · App builds · Hosting & tech' }
+      about: 'Builds our websites, app prototypes and the tech behind them.' }
   ],
   team: [
     { name: 'Vignesh', role: 'Business Manager', img: img('about-vignesh.jpg'),
-      about: 'Handles quotes, timelines and client care, and makes sure every order reaches you on the agreed date.',
-      skills: 'Quotes & planning · Client care · Delivery' }
+      about: 'Handles quotes, timelines, client care and delivery.' }
   ]
 };
 window.PEOPLE = [TEAM.founder, ...TEAM.cofounders, ...TEAM.team];
@@ -255,11 +252,11 @@ window.PEOPLE = [TEAM.founder, ...TEAM.cofounders, ...TEAM.team];
 /* About page timeline. Every date comes from a published project. Add founding and
    studio dates here once confirmed (leave `when` as a word if there is no exact date). */
 window.MILESTONES = [
-  { when: 'Roots', title: 'Started in Madanapalle', text: 'Branding and print for local businesses across Annamayya district.' },
-  { when: 'Aug 2025', title: 'Local Service Finder', text: 'A full identity, from logo to toolboxes and staff uniforms, then the website in September.', href: 'case.html?p=localservice-brand' },
-  { when: 'Nov 2025', title: 'CashAlert app', text: 'Mobile app UI for a payment voice-alert product, alongside its brand identity.', href: 'case.html?p=cashalert-app' },
-  { when: '2026', title: 'Sri Veluguvani and Vydehi', text: 'A 64-page Telugu monthly, and more than 30 course brochures for a Bengaluru teaching hospital.', href: 'case.html?p=vydehi' },
-  { when: 'Today', title: 'Studio in HSR Layout, Bengaluru', text: 'Design, digital, print and gifting from one team, with monthly growth plans and Avora Kids added to the range.' }
+  { when: 'Roots', title: 'Started in Madanapalle', text: 'Branding and print for local businesses.' },
+  { when: 'Aug 2025', title: 'Local Service Finder', text: 'Full identity, then the website in September.', href: 'case.html?p=localservice-brand' },
+  { when: 'Nov 2025', title: 'CashAlert app', text: 'App design for a payment voice-alert product.', href: 'case.html?p=cashalert-app' },
+  { when: '2026', title: 'Sri Veluguvani and Vydehi', text: 'A 64-page Telugu monthly and 30+ course brochures.', href: 'case.html?p=vydehi' },
+  { when: 'Today', title: 'Studio in HSR Layout, Bengaluru', text: 'Growth plans and Avora Kids added to the range.' }
 ];
 
 window.REVIEWS = [

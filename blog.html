@@ -33,7 +33,7 @@
     <div class="container"><div class="page-head-in">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span aria-hidden="true">/</span><span aria-current="page">Insights</span></nav>
       <h1 class="h1">Notes from <span class="serif">the studio</span></h1>
-      <p class="lead">Practical guides on branding, design and print, written by the people who do the work.</p>
+      <p class="lead">Practical guides on branding, design and print.</p>
     </div></div>
   </section>
   <section class="section" aria-labelledby="listTitle" style="padding-top:clamp(2rem,1.5rem + 2vw,3.5rem)">
@@ -45,15 +45,9 @@
       <div class="grid grid--2 mt-48" id="posts" style="row-gap:3rem"></div>
     </div>
   </section>
-  <section class="section section--tint" aria-labelledby="newsTitle">
-    <div class="container split">
-      <div class="stack"><h2 class="h2" id="newsTitle">One guide a month, by email</h2><p class="muted">Branding, print and design tips for growing businesses. No spam.</p></div>
-      <form class="news" data-news novalidate><label for="b-news">Email address</label><div class="news-row"><input class="input" id="b-news" type="email" required autocomplete="email" placeholder="you@example.com"><button class="btn btn--secondary" type="submit">Subscribe</button></div><p class="news-note" role="status" aria-live="polite"></p></form>
-    </div>
-  </section>
-  <section class="section" aria-labelledby="ctaTitle">
+  <section class="section section--flush" aria-labelledby="ctaTitle">
     <div class="container"><div class="cta-band">
-      <div><h2 class="h1" id="ctaTitle">Tell us what you’re <span class="serif">building.</span></h2><p class="lead">Have a question we haven’t written about? Ask it with your brief.</p></div>
+      <div><h2 class="h1" id="ctaTitle">Tell us what you’re <span class="serif">building.</span></h2><p class="lead">We’ll reply within one working day.</p></div>
       <div class="ask"><a class="btn btn--primary" href="contact.html#start">Start a project <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="wa-link" href="https://wa.me/919019440645" data-wa-link="Hi Avora, I have a question about"><i data-i="wa"></i> WhatsApp us for a quick reply</a></div>
     </div></div>
   </section>
@@ -68,7 +62,7 @@
     const face = n => (PEOPLE.find(x => x.name === n) || {}).img;
     const by = p => `<span class="byline">${pic(face(p.author), { alt: '', sizes: '44px' })}<span><b>${p.author}</b>${p.role} · ${fmt(p.date)}</span></span>`;
     const card = (p, big) => `<a class="post-card${big ? ' post-card--feature' : ''}" href="post.html?p=${p.id}"><div class="shot">${pic(p.img, { alt: '', sizes: big ? '(max-width: 860px) 94vw, 680px' : '(max-width: 600px) 94vw, 590px', eager: big })}</div>
-      <div class="txt"><span class="meta">${p.cat} · ${p.read}</span>${big ? `<h2>${p.title}</h2>` : `<h3>${p.title}</h3>`}<p>${p.excerpt}</p>${by(p)}</div></a>`;
+      <div class="txt"><span class="meta">${p.cat} · ${p.read}</span>${big ? `<h2>${p.title}</h2>` : `<h3>${p.title}</h3>`}${big ? `<p>${p.excerpt}</p>` : ''}${by(p)}</div></a>`;
     const feat = document.getElementById('feature'), grid = document.getElementById('posts'), topics = document.getElementById('topics'), count = document.getElementById('count');
     const cats = [...new Set(POSTS.map(p => p.cat))];
     topics.innerHTML = ['All', ...cats].map(c => `<button type="button" data-c="${c}" aria-pressed="false">${c} <small>${c === 'All' ? POSTS.length : POSTS.filter(p => p.cat === c).length}</small></button>`).join('');

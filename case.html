@@ -66,7 +66,7 @@
         ${sec('challenge', 'The challenge', `<p>${p.challenge}</p>`)}
         ${sec('approach', 'Our approach', `<p>${p.solution}</p>`)}
         ${sec('deliverables', 'What we delivered', `<ul class="ticks ticks--2">${p.deliverables.map(d => `<li>${d}</li>`).join('')}</ul>`)}
-        ${sec('outcome', 'Outcome', `<p>${p.outcome}.</p><dl class="results">${p.results.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join('')}</dl>`)}
+        ${sec('outcome', 'Outcome', `<dl class="results">${p.results.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join('')}</dl>`)}
         ${p.quote ? `<figure class="cs-sec quote-card"><blockquote class="pull">“${p.quote.text}”</blockquote><figcaption><b>${p.quote.name}</b><span>${p.quote.role || p.client}</span></figcaption></figure>` : ''}
         ${rest.length ? sec('gallery', 'Gallery', `<div class="gallery">${rest.map((s, k) => `<button type="button" data-lb="${k + 1}" aria-label="Enlarge image ${k + 2} of ${g.length}">${pic(s, { alt: `${p.client} project, image ${k + 2}`, sizes: '(max-width: 560px) 94vw, 480px' })}</button>`).join('')}</div>`, true) : ''}
         <p class="mt-48"><span class="muted">Related service: </span><a class="link" href="${SVC[1]}">${SVC[0]}</a></p>
@@ -75,7 +75,7 @@
     <section class="section section--tint" aria-labelledby="relTitle"><div class="container"><div class="section-head section-head--row"><div><h2 class="h2" id="relTitle">Related projects</h2></div><a class="go" href="work.html">All projects ${ICONS.arrow}</a></div>
       <div class="grid grid--3">${related.map(x => workCard(x)).join('')}</div></div></section>
     <section class="section" aria-labelledby="ctaTitle"><div class="container"><div class="cta-band">
-      <div><h2 class="h1" id="ctaTitle">Want something <span class="serif">like this?</span></h2><p class="lead">Tell us about your business. We’ll reply within one working day with next steps.</p></div>
+      <div><h2 class="h1" id="ctaTitle">Want something <span class="serif">like this?</span></h2><p class="lead">We’ll reply within one working day.</p></div>
       <div class="ask"><a class="btn btn--primary" href="${start}">Start a project ${ICONS.arrow}</a><a class="wa-link" href="${wa('Hi Avora! I saw the ' + p.client + ' case study and want something similar.')}" target="_blank" rel="noopener">${ICONS.wa} WhatsApp us for a quick reply</a></div>
     </div></div></section>`;
 

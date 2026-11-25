@@ -110,9 +110,9 @@ function footer() {
           <li><a href="tel:+${SITE.phoneRaw}">${SITE.phone}</a></li>
           <li><a href="${wa('Hi Avora Brands!')}" target="_blank" rel="noopener">WhatsApp us</a></li>
           <li><a href="mailto:${SITE.email}">${SITE.email}</a></li></ul>
-          ${page === 'blog' ? '' : `<form class="news" data-news novalidate><label for="f-news">Monthly branding and print tips</label>
+          <form class="news" data-news novalidate><label for="f-news">Monthly branding and print tips</label>
             <div class="news-row"><input class="input" id="f-news" type="email" required autocomplete="email" placeholder="you@example.com"><button class="btn btn--sm" type="submit">Join</button></div>
-            <p class="news-note" role="status" aria-live="polite"></p></form>`}
+            <p class="news-note" role="status" aria-live="polite"></p></form>
         </div>
       </div>
       <div class="foot-bottom"><span>© 2026 Avora Brands. All rights reserved.</span><span>Made in Bengaluru and Madanapalle</span></div>
@@ -135,14 +135,14 @@ window.workCard = (p, { feature = false, heading = 'h3', sizes = '(max-width: 60
   `<a class="case-card${feature ? ' case-card--feature' : ''}" href="case.html?p=${p.id}" data-cat="${p.cat}">
     <div class="shot">${pic(p.cover, { alt: `${p.client}: ${CATS[p.cat].toLowerCase()} project`, sizes: feature ? '(max-width: 860px) 100vw, 700px' : sizes, attrs: p.focus ? `style="object-position:${p.focus}"` : '' })}</div>
     <div class="txt"><span class="meta">${p.client} · ${CATS[p.cat]}</span><${heading}>${p.title}</${heading}>
-      <p>${p.summary}</p>${feature ? `<p class="result">${p.outcome}</p>` : ''}<span class="go">View case study ${I.arrow}</span></div></a>`;
+      ${feature ? `<p>${p.summary}</p>` : ''}<span class="go">View case study ${I.arrow}</span></div></a>`;
 $$('[data-work]').forEach(el => {
   const list = el.dataset.work.split(',').map(id => PROJECTS.find(p => p.id === id.trim())).filter(Boolean);
   el.innerHTML = list.map(p => workCard(p, { feature: el.hasAttribute('data-feature') })).join('');
 });
 $$('[data-project-count]').forEach(el => el.textContent = PROJECTS.length);
 $$('[data-reviews]').forEach(el => el.innerHTML = REVIEWS.map(r => `<figure class="quote-card"><blockquote>“${r.text}”</blockquote><figcaption><b>${r.name}</b><span>${r.source}</span></figcaption></figure>`).join(''));
-$$('[data-team]').forEach(el => el.innerHTML = PEOPLE.map(m => `<article class="team-card">${pic(m.img, { alt: `Portrait of ${m.name}`, sizes: '(max-width: 600px) 112px, (max-width: 1000px) 50vw, 290px' })}<div><h3>${m.name}</h3><p class="title">${m.role}</p><p>${m.about}</p><p class="skills">${m.skills}</p></div></article>`).join(''));
+$$('[data-team]').forEach(el => el.innerHTML = PEOPLE.map(m => `<article class="team-card">${pic(m.img, { alt: `Portrait of ${m.name}`, sizes: '(max-width: 600px) 112px, (max-width: 1000px) 50vw, 290px' })}<div><h3>${m.name}</h3><p class="title">${m.role}</p><p>${m.about}</p></div></article>`).join(''));
 $$('[data-milestones]').forEach(el => el.innerHTML = MILESTONES.map(m => `<li><span class="when">${m.when}</span><div><b>${m.title}</b><span class="d">${m.text}${m.href ? ` <a class="link" href="${m.href}">See the project</a>` : ''}</span></div></li>`).join(''));
 $$('[data-logos]').forEach(el => el.innerHTML = CLIENT_LOGOS.map(l => `<li>${pic(l.src, { alt: l.name, sizes: '118px' })}</li>`).join(''));
 renderIcons(); renderWaLinks();

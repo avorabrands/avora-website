@@ -61,7 +61,7 @@
     <div class="section" style="padding-top:clamp(2rem,1.5rem + 2vw,4rem)"><div class="container post-layout">
       <article>
         <div class="prose">${body.html}</div>
-        <div class="author-box">${pic(person.img, { alt: `Portrait of ${p.author}`, sizes: '88px' })}<div><p class="meta">Written by</p><p><b>${p.author}</b>, ${p.role}</p><p class="small muted">${AUTHOR_NOTES[p.author] || person.about}</p></div></div>
+        <div class="author-box">${pic(person.img, { alt: `Portrait of ${p.author}`, sizes: '88px' })}<div><p><b>${p.author}</b>, ${p.role}</p><p class="small muted">${AUTHOR_NOTES[p.author] || person.about}</p></div></div>
         <div class="share"><span class="muted">Share</span><a class="btn btn--secondary btn--sm" target="_blank" rel="noopener" href="https://wa.me/?text=${encodeURIComponent(p.title + ' ' + url)}">WhatsApp<span class="sr-only"> (opens in a new tab)</span></a><a class="btn btn--secondary btn--sm" target="_blank" rel="noopener" href="https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}">LinkedIn<span class="sr-only"> (opens in a new tab)</span></a><button class="btn btn--secondary btn--sm" type="button" id="copy">Copy link</button></div>
       </article>
       ${heads.length > 2 ? `<aside class="post-aside"><nav class="post-toc" aria-labelledby="tocT"><h2 id="tocT">In this guide</h2>${heads.map(([h, t]) => `<a href="#${h}">${t}</a>`).join('')}</nav></aside>` : ''}
