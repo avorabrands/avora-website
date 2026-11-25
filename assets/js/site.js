@@ -142,8 +142,8 @@ window.workCard = (p, i = 0) => `<a class="work-card reveal" style="--d:${(i % 3
 const FEATURED = ['localservice-web', 'picxel-app', 'tiara', 'veluguvani', 'bhaktitv', 'cashalert-brand', 'swagat'];
 $$('[data-work]').forEach(el => {
   const list = el.dataset.work === 'featured' ? FEATURED.map(id => PROJECTS.find(p => p.id === id)) : PROJECTS;
-  /* Home slider: short text that fits two lines */
-  el.innerHTML = list.map((p, i) => workCard(el.id === 'homeWork' && p.short ? { ...p, summary: p.short } : p, i)).join('');
+  /* Home and Design sliders: short text that fits two lines */
+  el.innerHTML = list.map((p, i) => workCard(el.dataset.work === 'featured' && p.short ? { ...p, summary: p.short } : p, i)).join('');
 });
 $$('[data-reviews]').forEach(el => el.innerHTML = REVIEWS.map((r, i) => `<figure class="rv-card reveal" style="--d:${i * .08}s">
   <figcaption class="rv-who"><span class="av" style="background:${r.color}" aria-hidden="true">${r.name[0]}</span><span><b>${r.name}</b><span class="stars-5" role="img" aria-label="5 out of 5 stars">★★★★★</span></span></figcaption>
