@@ -139,14 +139,15 @@ window.renderWaLinks = (root = document) => $$('[data-wa-link]', root).forEach(a
 window.workCard = (p, i = 0) => `<a class="work-card reveal" style="--d:${(i % 3) * .08}s" href="case.html?p=${p.id}" data-cat="${p.cat}">
   <div class="media"><img src="${p.cover}" alt="${p.client}, ${p.title}" loading="lazy"><span class="chip">${CATS[p.cat]}</span><span class="go">${I.arrow}</span></div>
   <h3>${p.client}</h3><p>${p.summary}</p><span class="outcome">${p.outcome}</span></a>`;
-const FEATURED = ['tiara', 'veluguvani', 'cashalert-brand', 'bhaktitv', 'localservice-web', 'picxel-app', 'swagat'];
+const FEATURED = ['localservice-web', 'picxel-app', 'tiara', 'veluguvani', 'bhaktitv', 'cashalert-brand', 'swagat'];
 $$('[data-work]').forEach(el => {
   const list = el.dataset.work === 'featured' ? FEATURED.map(id => PROJECTS.find(p => p.id === id)) : PROJECTS;
-  el.innerHTML = list.map(workCard).join('');
+  /* Home slider: short text that fits two lines */
+  el.innerHTML = list.map((p, i) => workCard(el.id === 'homeWork' && p.short ? { ...p, summary: p.short } : p, i)).join('');
 });
-$$('[data-reviews]').forEach(el => el.innerHTML = REVIEWS.map((r, i) => `<figure class="review ${i === 0 ? 'big' : ''} reveal" style="--d:${i * .08}s">
-  <span class="stars-5">★★★★★</span><blockquote>“${r.text}”</blockquote>
-  <figcaption class="who"><span class="av" style="background:${r.color}">${r.name[0]}</span><span><b>${r.name}</b><small>Google review</small></span></figcaption></figure>`).join(''));
+$$('[data-reviews]').forEach(el => el.innerHTML = REVIEWS.map((r, i) => `<figure class="rv-card reveal" style="--d:${i * .08}s">
+  <figcaption class="rv-who"><span class="av" style="background:${r.color}" aria-hidden="true">${r.name[0]}</span><span><b>${r.name}</b><span class="stars-5" role="img" aria-label="5 out of 5 stars">★★★★★</span></span></figcaption>
+  <blockquote>${r.text}</blockquote></figure>`).join(''));
 $$('[data-faces]').forEach(el => { const all = [...TEAM.cofounders, ...TEAM.team]; el.innerHTML = all.slice(0, 4).map(m => `<img src="${m.img}" alt="${m.name}" title="${m.name}, ${m.role}" loading="lazy">`).join('') + (all.length > 4 ? `<a class="face-more" href="about.html" aria-label="Meet ${all.length - 4} more team members">${all.length - 4}+</a>` : ''); });
 renderIcons(); renderWaLinks();
 

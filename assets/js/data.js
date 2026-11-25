@@ -47,8 +47,22 @@ window.PROJECTS = [
     deliverables: ['Responsive website design', 'Hero and brand styling', 'Services showcase', 'Appointment booking popup', 'Gallery and reviews sections', 'Contact, map and WhatsApp shortcuts']
   },
   {
+    id: 'vtiara-web', client: 'VTIARA Hair & Skin Clinic', title: 'A skin clinic, one tap from a consultation', cat: 'website',
+    live: 'https://vtiaraclinic.com',
+    cover: img('vtiara-home.jpg'), gallery: ['vtiara-branch.jpg', 'vtiara-expert.jpg', 'vtiara-book.jpg'].map(img),
+    summary: 'A website for a dermatologist-led hair and skin clinic in Bengaluru, covering treatments, two branches and online appointment booking.',
+    outcome: 'From treatment search to booked consultation',
+    industry: 'Healthcare & Wellness', services: 'Website Design, Appointment Booking, Treatment Pages', timeline: 'Live now', year: '2026',
+    overview: 'VTIARA Hair & Skin Clinic has branches in Indiranagar and on New BEL Road, Bengaluru. They needed a website that explains their hair and skin treatments clearly and makes it easy to book a consultation.',
+    challenge: 'The clinic offers a long list of treatments, and patients want to know who will treat them before they book. The site had to make the right treatment easy to find, build trust, and lead visitors to one action: booking an appointment.',
+    solution: 'We designed a clean, clinical look in navy, teal and white, led by a hero slider for key treatments. Treatments are grouped by concern, the specialist and both branches have their own space, and booking, call and WhatsApp stay within reach.',
+    results: [['Booking', 'Popup and full appointment form'], ['Treatments', 'Grouped by hair and skin concern'], ['Branches', 'Indiranagar and New BEL Road pages'], ['Reach', 'Call and WhatsApp always one tap away']],
+    deliverables: ['Responsive website design', 'Hero slider and brand styling', 'Treatment pages and menu', 'Appointment booking popup and form', 'Specialist and results sections', 'Branch pages and maps']
+  },
+  {
     id: 'tiara', client: 'VTIARA Hair & Skin Clinic', title: 'Clinical trust, in a thumb-stopping ad', cat: 'social',
     cover: img('tiara-social1.jpg'), gallery: ['tiara-social2.jpg', 'tiara-social3.jpg', 'tiara-social4.jpg'].map(img),
+    short: 'Instagram and display ads for an Indiranagar skin clinic.',
     summary: 'Instagram and display ad creatives for three treatment campaigns at an Indiranagar dermatology clinic.',
     outcome: 'Turning scrolls into skin consultations',
     industry: 'Healthcare & Wellness', services: 'Social Media Ads, Instagram Creatives, Display Banners', timeline: '2 weeks', year: '2026',
@@ -73,6 +87,7 @@ window.PROJECTS = [
   {
     id: 'veluguvani', client: 'Sri Veluguvani', title: '64 pages of Telugu storytelling, every month', cat: 'graphic',
     cover: img('veluguvani1.jpg'), gallery: [img('veluguvani2.jpg')],
+    short: 'Covers and 64-page layouts for a Telugu monthly magazine.',
     summary: 'Cover design and 64-page inner layouts for a Telugu political and social monthly from Annamayya District.',
     outcome: 'Telugu news, beautifully told each month',
     industry: 'Media & Publishing', services: 'Magazine Covers, Editorial Layout, Print Production', timeline: 'Monthly, ongoing', year: '2026',
@@ -85,6 +100,7 @@ window.PROJECTS = [
   {
     id: 'cashalert-brand', client: 'CashAlert', title: 'A purple mark merchants know at the counter', cat: 'branding',
     cover: img('cashalert1.1.jpg'), gallery: ['cashalert1.2.jpg', 'cashalert1.3.jpg', 'cashalert1.4.jpg'].map(img),
+    short: 'Brand identity for a payment voice-alert app, from logo to merch.',
     summary: 'Brand identity for a payment voice-alert app, rolled out to QR stands, stationery and merchandise.',
     outcome: 'A brand merchants trust at the counter',
     industry: 'FinTech & Payments', services: 'Logo, Brand Identity, Stationery, Merchandise', timeline: '3 weeks', year: '2026',
@@ -109,6 +125,7 @@ window.PROJECTS = [
   {
     id: 'bhaktitv', client: 'Bhakti TV', title: 'Devotion, designed for every generation', cat: 'app',
     cover: img('img-bhaktitv.jpg'), gallery: ['img-bhaktitv-1.jpg', 'img-bhaktitv-2.jpg', 'img-bhaktitv-3.jpg', 'img-bhaktitv-4.jpg', 'img-bhaktitv-5.jpg', 'img-bhaktitv-6.jpg'].map(img),
+    short: 'Mobile app design for a devotional audio and video platform.',
     summary: 'Mobile app design for a devotional audio and video platform with bhajans, mantras, kathas and Bhakti Reels.',
     outcome: 'Bhajans, kathas & reels in one calm app',
     industry: 'Media & Entertainment', services: 'Mobile App Design, UX Research', timeline: '6 weeks', year: 'Jun 2026',
@@ -145,6 +162,7 @@ window.PROJECTS = [
   {
     id: 'localservice-web', client: 'Local Service Finder', title: 'Finding local help, minus the stress', cat: 'website',
     cover: img('lsf-web-thumb.jpg'), gallery: ['lsf-web-1.jpg', 'lsf-web-2.jpg', 'lsf-web-3.jpg', 'lsf-web-4.jpg', 'lsf-web-5.jpg', 'lsf-web-6.jpg'].map(img),
+    short: 'Website for finding, booking and paying local service providers.',
     summary: 'A multi-page website covering discovery, provider profiles, booking and payments.',
     outcome: 'Trusted local help, booked in minutes',
     industry: 'Hyperlocal & On-demand', services: 'Website UI/UX, Prototyping, Design System', timeline: '5 weeks', year: 'Sep 2025',
@@ -169,6 +187,7 @@ window.PROJECTS = [
   {
     id: 'picxel-app', client: 'Picxel AI', title: 'Turning photos into possibilities', cat: 'app',
     cover: img('picxel-app-thumb.jpg'), gallery: ['PicxelAI1.jpg', 'PicxelAI2.jpg', 'PicxelAI3.jpg', 'PicxelAI4.jpg', 'PicxelAI5.jpg', 'PicxelAI6.jpg'].map(img),
+    short: 'Product UI for an AI photo transformation app with 500+ templates.',
     summary: 'Product UI for an AI image-transformation app with 500+ premium templates.',
     outcome: 'Turn any photo into stunning visuals',
     industry: 'AI & Technology', services: 'Mobile App UI, Wireframing, Prototyping', timeline: '4 weeks', year: 'Feb 2026',
@@ -181,6 +200,7 @@ window.PROJECTS = [
   {
     id: 'swagat', client: 'Swagat Stay', title: 'A PG search that feels like coming home', cat: 'app',
     cover: img('swagat-thumb.jpg'), gallery: ['img-swagat-1.jpg', 'img-swagat-2.jpg', 'img-swagat-3.jpg', 'img-swagat-4.jpg', 'img-swagat-5.jpg', 'img-swagat-6.jpg'].map(img),
+    short: 'Mobile app for finding and booking PG and rental stays.',
     summary: 'Mobile app for a PG and rental-stay platform with smart search and simple booking.',
     outcome: 'Finding a PG stay, made stress-free',
     industry: 'Real Estate & Hospitality', services: 'Mobile App Design, UX Research', timeline: '6 weeks', year: 'Apr 2026',
@@ -230,7 +250,8 @@ window.TEAM = {
 window.REVIEWS = [
   { name: 'Janagam Hemu', text: 'Very satisfied with Avora Brands. Great communication, professional service, and outstanding quality. The entire process was smooth and hassle-free. Would definitely recommend them to others.', color: '#E2475B' },
   { name: 'Devarakonda Janardhan', text: 'Great experience with Avora Brands. Professional team and quality work. Highly recommended.', color: '#2F6FD6' },
-  { name: 'Sanjay K', text: 'I really liked the website\'s design and smooth user experience. It reflects professionalism and creativity. Wishing the Avora Brands team great success in helping businesses build strong digital identities.', color: '#7A4DD8' }
+  { name: 'Sanjay K', text: 'I really liked the website\'s design and smooth user experience. It reflects professionalism and creativity. Wishing the Avora Brands team great success in helping businesses build strong digital identities.', color: '#7A4DD8' },
+  { name: 'Taarak Brothers', text: 'They give best solution for our business thank you', color: '#0F8A6A' }
 ];
 
 window.POSTS = [
