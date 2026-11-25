@@ -3,91 +3,96 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Case Study | Avora Brands</title>
-<meta name="description" content="A project by Avora Brands, Bengaluru.">
-<link rel="canonical" href="https://www.avorabrands.in/case">
-<meta property="og:type" content="article">
-<meta property="og:site_name" content="Avora Brands">
-<meta property="og:locale" content="en_IN">
-<meta property="og:title" content="Case Study | Avora Brands">
-<meta property="og:description" content="A project by Avora Brands, Bengaluru.">
-<meta property="og:url" content="https://www.avorabrands.in/case">
-<meta property="og:image" content="https://www.avorabrands.in/images/vydehi-thumb.jpg">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Case Study | Avora Brands">
-<meta name="twitter:description" content="A project by Avora Brands, Bengaluru.">
-<meta name="twitter:image" content="https://www.avorabrands.in/images/vydehi-thumb.jpg">
-<meta name="theme-color" content="#ffffff">
+<title>Project | Avora Brands</title>
+<meta name="description" content="Avora Brands case study.">
+<meta name="theme-color" content="#061226">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon-192.png?v=3">
 <link rel="apple-touch-icon" href="/images/favicon-512.png?v=3">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=Manrope:wght@700;800&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/site.css">
 </head>
-<body data-page="work">
-<a class="skip-link" href="#main">Skip to content</a>
-<div data-header><noscript><div class="container nav"><a class="brand" href="index.html">Avora Brands</a><nav aria-label="Main"><a class="nav-item" href="design.html">Brand &amp; digital</a><a class="nav-item" href="print.html">Print &amp; merch</a><a class="nav-item" href="growth.html">Growth plans</a><a class="nav-item" href="work.html">Work</a><a class="nav-item" href="about.html">About</a><a class="nav-item" href="contact.html">Contact</a></nav></div></noscript></div>
-<main id="main"></main>
+<body data-page="work" class="dark-top">
+<div data-header></div>
+<main id="cs"></main>
 <div data-footer></div>
-<script src="assets/js/images.js"></script>
 <script src="assets/js/data.js"></script>
+<script>
+  /* render before site.js so shared behaviours bind to the case study */
+  (() => {
+    const id = new URLSearchParams(location.search).get('p');
+    const i = Math.max(0, PROJECTS.findIndex(p => p.id === id)), p = PROJECTS[i], next = PROJECTS[(i + 1) % PROJECTS.length];
+    document.title = `${p.client}, ${CATS[p.cat]} Project | Avora Brands`;
+    document.querySelector('meta[name=description]').content = p.summary;
+    const g = /-thumb\./.test(p.cover) ? p.gallery : [p.cover, ...p.gallery];
+    document.getElementById('cs').innerHTML = `
+    <section class="page-hero work-hero3 cs-hero">
+      <div class="sp-bg" style="background-image:url('${g[0] || p.cover}')" aria-hidden="true"></div>
+      <div class="container on-dark sp-wrap">
+        <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><a href="work.html">Work</a><span>/</span><span>${p.client}</span></nav>
+        <div class="sp-main">
+          <div class="sp-copy">
+            <span class="chip chip--gold reveal">${CATS[p.cat]}</span>
+            <div class="sp-text in">
+              <p class="cs-client">${p.client}</p>
+              <h1 data-split>${p.title}</h1>
+              <p>${p.summary}</p>
+              ${p.live ? `<div class="btn-row"><a class="btn btn--gold" href="${p.live}" target="_blank" rel="noopener">Visit live site <i data-i="arrow"></i></a></div>` : ''}
+            </div>
+          </div>
+          <a class="sp-frame" href="#gallery" data-lb="0" aria-label="View ${p.client} images"><img class="in" src="${g[0] || p.cover}" alt="${p.client}: ${p.title}"></a>
+        </div>
+      </div>
+    </section>
+    <section class="section--tight"><div class="container">
+      <div class="cs-meta reveal"><div><small>Industry</small><b>${p.industry}</b></div><div><small>Services</small><b>${p.services}</b></div><div><small>Timeline</small><b>${p.timeline}</b></div><div><small>Year</small><b>${p.year}</b></div></div>
+    </div></section>
+    <section class="section" style="padding-top:20px"><div class="container cs-body">
+      <nav class="cs-toc" aria-label="On this page"><a href="#overview" class="active">Overview</a><a href="#challenge">Challenge</a><a href="#solution">Solution</a><a href="#results">Highlights</a><a href="#deliverables">Deliverables</a>${g.length ? '<a href="#gallery">Gallery</a>' : ''}</nav>
+      <div>
+        <div class="cs-sec reveal" id="overview"><span class="eyebrow">Overview</span><h2 class="mt-8">The brief</h2><p>${p.overview}</p></div>
+        <div class="cs-sec reveal" id="challenge"><span class="eyebrow">Challenge</span><h2 class="mt-8">What made it hard</h2><p>${p.challenge}</p></div>
+        <div class="cs-sec reveal" id="solution"><span class="eyebrow">Solution</span><h2 class="mt-8">What we did</h2><p>${p.solution}</p></div>
+        <div class="cs-sec reveal" id="results"><span class="eyebrow">Highlights</span><h2 class="mt-8">The outcome</h2><div class="result-list">${p.results.map(([k, v]) => `<div><small>${k}</small>${v}</div>`).join('')}</div></div>
+        <div class="cs-sec reveal" id="deliverables"><span class="eyebrow">Deliverables</span><h2 class="mt-8">What we handed over</h2><div class="deliv">${p.deliverables.map(d => `<div>${d}</div>`).join('')}</div></div>
+        ${g.length ? `<div class="cs-sec" id="gallery"><span class="eyebrow">Gallery</span><h2 class="mt-8">A closer look</h2>
+          <div class="gallery">${g.map((s, k) => `<img class="reveal ${g.length % 2 && k === 0 ? 'wide' : ''}" src="${s}" alt="${p.client} design detail ${k + 1}" loading="lazy" data-lb="${k}" tabindex="0" role="button" aria-label="Open image ${k + 1} of ${g.length}">`).join('')}</div></div>` : ''}
+      </div>
+    </div></section>
+    <section class="section" style="padding-top:0"><div class="container">
+      <div class="grid g-2">
+        <a class="next-proj reveal" href="case.html?p=${next.id}"><div><small>Next project</small><h3 class="h3 mt-8">${next.client}</h3><p style="color:#A9B1C7">${next.title}</p></div><span class="go"><i data-i="arrow"></i></span></a>
+        <a class="next-proj reveal" style="background:linear-gradient(135deg,#0E86DC,#0B68AB);color:#fff" href="${wa('Hi Avora! I saw the ' + p.client + ' case study and want something similar.')}" target="_blank" rel="noopener"><div><small style="color:rgba(255,255,255,.85)">Like this?</small><h3 class="h3 mt-8">Start a similar project</h3><p style="color:rgba(255,255,255,.9)">Free 15-minute call</p></div><span class="go" style="background:var(--navy-950);color:#fff"><i data-i="arrow"></i></span></a>
+      </div>
+    </div></section>`;
+    /* gallery lightbox */
+    let cur = 0, box = null, wheelLock = 0, touchX = null;
+    const show = (n) => { cur = (n + g.length) % g.length; box.querySelector('img').src = g[cur]; box.querySelector('img').alt = p.client + ' image ' + (cur + 1); box.querySelector('.lb-count').textContent = (cur + 1) + ' / ' + g.length; };
+    const close = () => { if (!box) return; box.remove(); box = null; document.body.style.overflow = ''; document.removeEventListener('keydown', onKey); };
+    const onKey = (e) => { if (e.key === 'Escape') close(); else if (e.key === 'ArrowRight') show(cur + 1); else if (e.key === 'ArrowLeft') show(cur - 1); };
+    const open = (n) => {
+      box = document.createElement('div'); box.className = 'lb'; box.setAttribute('role', 'dialog'); box.setAttribute('aria-modal', 'true'); box.setAttribute('aria-label', 'Image viewer');
+      box.innerHTML = '<button class="lb-x" aria-label="Close">&times;</button>' + (g.length > 1 ? '<button class="lb-nav lb-prev" aria-label="Previous image">&#8249;</button><button class="lb-nav lb-next" aria-label="Next image">&#8250;</button>' : '') + '<img alt=""><div class="lb-count"></div>';
+      document.body.appendChild(box); document.body.style.overflow = 'hidden'; show(n);
+      box.addEventListener('click', (e) => { if (e.target === box || e.target.classList.contains('lb-x')) close(); else if (e.target.classList.contains('lb-next')) show(cur + 1); else if (e.target.classList.contains('lb-prev')) show(cur - 1); });
+      box.addEventListener('wheel', (e) => { e.preventDefault(); const t = Date.now(); if (t - wheelLock < 350 || Math.abs(e.deltaY) < 8) return; wheelLock = t; show(cur + (e.deltaY > 0 ? 1 : -1)); }, { passive: false });
+      box.addEventListener('touchstart', (e) => { touchX = e.touches[0].clientX; }, { passive: true });
+      box.addEventListener('touchend', (e) => { if (touchX === null) return; const d = e.changedTouches[0].clientX - touchX; touchX = null; if (Math.abs(d) > 40) show(cur + (d < 0 ? 1 : -1)); });
+      document.addEventListener('keydown', onKey);
+    };
+    document.getElementById('cs').addEventListener('click', (e) => { const t = e.target.closest('[data-lb]'); if (!t) return; e.preventDefault(); open(+t.dataset.lb); });
+    document.getElementById('cs').addEventListener('keydown', (e) => { const t = e.target.closest('img[data-lb]'); if (t && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); open(+t.dataset.lb); } });
+  })();
+</script>
 <script src="assets/js/site.js"></script>
 <script>
-  (() => {
-    const id = new URLSearchParams(location.search).get('p'), i = PROJECTS.findIndex(p => p.id === id), p = PROJECTS[i], root = document.getElementById('main');
-    if (!p) {
-      document.title = 'Project not found | Avora Brands';
-      document.head.insertAdjacentHTML('beforeend', '<meta name="robots" content="noindex">');
-      root.innerHTML = `<section class="section"><div class="container stack"><h1 class="h1">We couldn’t find that project</h1><p class="lead">The link may be old. All our case studies are on the work page.</p><a class="btn btn--primary" href="work.html">See all work</a></div></section>`;
-      return;
-    }
-    const others = PROJECTS.filter(x => x !== p);
-    const related = [...others.filter(x => x.client === p.client), ...others.filter(x => x.cat === p.cat && x.client !== p.client), ...others.filter(x => x.industry === p.industry), ...others].filter((x, k, a) => a.indexOf(x) === k).slice(0, 3);
-    /* service that matches this project, for the related link and the enquiry */
-    const SVC = { branding: ['Branding and identity', 'design.html#branding', 'Branding'], website: ['Website design', 'design.html#website', 'Website or app'], app: ['Mobile app UI/UX', 'design.html#app', 'Website or app'], graphic: ['Graphic and editorial', 'design.html#graphic', 'Branding'], social: ['Social media design', 'design.html#social', 'Social and marketing'] }[p.cat];
-    const start = `contact.html?need=${encodeURIComponent(SVC[2])}&about=${encodeURIComponent('Something similar to the ' + p.client + ' project')}#start`;
-    const g = [p.cover, ...p.gallery];
-    const hero = p.cover, rest = p.gallery;
-    const sec = (id, title, body, wide) => `<section class="cs-sec${wide ? ' cs-sec--wide' : ''}" id="${id}" aria-labelledby="${id}-t"><h2 class="h3" id="${id}-t">${title}</h2>${body}</section>`;
-    const toc = [['context', 'Client and context'], ['challenge', 'Challenge'], ['approach', 'Approach'], ['deliverables', 'Deliverables'], ['outcome', 'Outcome'], ...(rest.length ? [['gallery', 'Gallery']] : [])];
-    root.innerHTML = `
-    <section class="cs-hero"><div class="container">
-      <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span aria-hidden="true">/</span><a href="work.html">Work</a><span aria-hidden="true">/</span><span aria-current="page">${p.client}</span></nav>
-      <div class="cs-head"><div><p class="eyebrow">${p.client} · ${CATS[p.cat]}</p><h1 class="h1">${p.title}</h1></div>
-        <div><p class="lead">${p.summary}</p>${p.live ? `<a class="go" href="${p.live}" target="_blank" rel="noopener">Visit the live site<span class="sr-only"> (opens in a new tab)</span> ${ICONS.arrow}</a>` : ''}</div></div>
-      <button type="button" class="cs-hero-shot" data-lb="0" aria-label="Enlarge image 1 of ${g.length}">${pic(hero, { alt: `${p.client}: ${p.title}`, sizes: '(max-width: 1240px) 94vw, 1200px', eager: true })}</button>
-      <dl class="cs-meta"><div><dt>Industry</dt><dd>${p.industry}</dd></div><div><dt>Services</dt><dd>${p.services}</dd></div><div><dt>Timeline</dt><dd>${p.timeline}</dd></div><div><dt>Year</dt><dd>${p.year}</dd></div></dl>
-    </div></section>
-    <div class="section"><div class="container cs-body">
-      <nav class="cs-toc" aria-label="On this page">${toc.map(([k, v]) => `<a href="#${k}">${v}</a>`).join('')}</nav>
-      <div>
-        ${sec('context', 'Client and context', `<p>${p.overview}</p>`)}
-        ${sec('challenge', 'The challenge', `<p>${p.challenge}</p>`)}
-        ${sec('approach', 'Our approach', `<p>${p.solution}</p>`)}
-        ${sec('deliverables', 'What we delivered', `<ul class="ticks ticks--2">${p.deliverables.map(d => `<li>${d}</li>`).join('')}</ul>`)}
-        ${sec('outcome', 'Outcome', `<dl class="results">${p.results.map(([k, v]) => `<div><dt>${k}</dt><dd>${v}</dd></div>`).join('')}</dl>`)}
-        ${p.quote ? `<figure class="cs-sec quote-card"><blockquote class="pull">“${p.quote.text}”</blockquote><figcaption><b>${p.quote.name}</b><span>${p.quote.role || p.client}</span></figcaption></figure>` : ''}
-        ${rest.length ? sec('gallery', 'Gallery', `<div class="gallery">${rest.map((s, k) => `<button type="button" data-lb="${k + 1}" aria-label="Enlarge image ${k + 2} of ${g.length}">${pic(s, { alt: `${p.client} project, image ${k + 2}`, sizes: '(max-width: 560px) 94vw, 480px' })}</button>`).join('')}</div>`, true) : ''}
-        <p class="mt-48"><span class="muted">Related service: </span><a class="link" href="${SVC[1]}">${SVC[0]}</a></p>
-      </div>
-    </div></div>
-    <section class="section section--tint" aria-labelledby="relTitle"><div class="container"><div class="section-head section-head--row"><div><h2 class="h2" id="relTitle">Related projects</h2></div><a class="go" href="work.html">All projects ${ICONS.arrow}</a></div>
-      <div class="grid grid--3">${related.map(x => workCard(x)).join('')}</div></div></section>
-    <section class="section" aria-labelledby="ctaTitle"><div class="container"><div class="cta-band">
-      <div><h2 class="h1" id="ctaTitle">Want something <span class="serif">like this?</span></h2><p class="lead">We’ll reply within one working day.</p></div>
-      <div class="ask"><a class="btn btn--primary" href="${start}">Start a project ${ICONS.arrow}</a><a class="wa-link" href="${wa('Hi Avora! I saw the ' + p.client + ' case study and want something similar.')}" target="_blank" rel="noopener">${ICONS.wa} WhatsApp us for a quick reply</a></div>
-    </div></div></section>`;
-
-    setMeta({
-      title: `${p.client}: ${CATS[p.cat]} Case Study | Avora Brands`, description: p.summary, path: `case?p=${p.id}`, image: hero,
-      jsonLd: { '@type': 'CreativeWork', name: `${p.client}: ${p.title}`, description: p.summary, image: `${SITE.url}/${decodeURI(hero)}`, url: `${SITE.url}/case?p=${p.id}`, creator: { '@type': 'Organization', name: 'Avora Brands', url: SITE.url } }
-    });
-    root.addEventListener('click', e => { const b = e.target.closest('[data-lb]'); if (b) openLightbox(g, +b.dataset.lb, p.client); });
-    const links = [...root.querySelectorAll('.cs-toc a')];
-    const spy = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) links.forEach(a => a.hash === '#' + e.target.id ? a.setAttribute('aria-current', 'true') : a.removeAttribute('aria-current')); }), { rootMargin: '-25% 0px -65% 0px' });
-    root.querySelectorAll('.cs-sec[id]').forEach(s => spy.observe(s));
-  })();
+  const toc = [...document.querySelectorAll('.cs-toc a')];
+  const o = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) toc.forEach(a => a.classList.toggle('active', a.hash === '#' + e.target.id)); }), { rootMargin: '-40% 0px -55% 0px' });
+  document.querySelectorAll('.cs-sec').forEach(s => o.observe(s));
+  /* hero stage: tilted on load, lies flat as you scroll into it */
+  const st = document.querySelector('.cs-stage');
+  if (st) { const f = () => st.classList.toggle('flat', scrollY > 40 || st.getBoundingClientRect().top < innerHeight * .55); f(); addEventListener('scroll', f, { passive: true }); setTimeout(() => st.classList.add('flat'), 1400); }
 </script>
 </body>
 </html>

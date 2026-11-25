@@ -5,80 +5,68 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insights | Avora Brands</title>
 <meta name="description" content="A guide from the Avora Brands studio.">
-<link rel="canonical" href="https://www.avorabrands.in/post">
-<meta property="og:type" content="article">
-<meta property="og:site_name" content="Avora Brands">
-<meta property="og:locale" content="en_IN">
-<meta property="og:title" content="Insights | Avora Brands">
-<meta property="og:description" content="A guide from the Avora Brands studio.">
-<meta property="og:url" content="https://www.avorabrands.in/post">
-<meta property="og:image" content="https://www.avorabrands.in/images/post-brand-identity.jpg">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Insights | Avora Brands">
-<meta name="twitter:description" content="A guide from the Avora Brands studio.">
-<meta name="twitter:image" content="https://www.avorabrands.in/images/post-brand-identity.jpg">
-<meta name="theme-color" content="#ffffff">
+<meta name="theme-color" content="#061226">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon-192.png?v=3">
 <link rel="apple-touch-icon" href="/images/favicon-512.png?v=3">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=Manrope:wght@700;800&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/site.css">
+<style>
+  .progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--gold),var(--marigold));z-index:70}
+  .post-banner{border-radius:var(--radius-lg);overflow:hidden;margin:-70px auto 0;max-width:960px;position:relative;z-index:3;box-shadow:var(--shadow-lg);aspect-ratio:16/8;background:var(--bg-2)}
+  .post-banner img{width:100%;height:100%;object-fit:cover}
+  .prose blockquote.tip{font-family:var(--font);font-style:normal;font-size:17px;background:#fff;border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:14px;padding:16px 20px}
+  .prose blockquote.tip p{margin:0}
+  .share{max-width:720px;margin:40px auto 0;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+</style>
 </head>
-<body data-page="blog">
-<a class="skip-link" href="#main">Skip to content</a>
-<div data-header><noscript><div class="container nav"><a class="brand" href="index.html">Avora Brands</a><nav aria-label="Main"><a class="nav-item" href="design.html">Brand &amp; digital</a><a class="nav-item" href="print.html">Print &amp; merch</a><a class="nav-item" href="growth.html">Growth plans</a><a class="nav-item" href="work.html">Work</a><a class="nav-item" href="about.html">About</a><a class="nav-item" href="contact.html">Contact</a></nav></div></noscript></div>
+<body data-page="blog" class="dark-top">
 <div class="progress" aria-hidden="true"></div>
-<main id="main"></main>
+<div data-header></div>
+<main id="post"></main>
 <div data-footer></div>
-<script src="assets/js/images.js"></script>
 <script src="assets/js/data.js"></script>
 <script src="assets/js/posts-content.js"></script>
-<script src="assets/js/site.js"></script>
 <script>
   (() => {
-    const id = new URLSearchParams(location.search).get('p'), p = POSTS.find(x => x.id === id), root = document.getElementById('main');
-    if (!p) {
-      document.title = 'Article not found | Avora Brands';
-      document.head.insertAdjacentHTML('beforeend', '<meta name="robots" content="noindex">');
-      root.innerHTML = `<section class="section"><div class="container stack"><h1 class="h1">We couldn’t find that article</h1><p class="lead">It may have moved. All our guides are on the Insights page.</p><a class="btn btn--primary" href="blog.html">See all guides</a></div></section>`;
-      return;
-    }
-    const body = POST_BODIES[p.id], person = PEOPLE.find(x => x.name === p.author), cta = POST_CTAS[p.cat];
+    const id = new URLSearchParams(location.search).get('p');
+    const i = Math.max(0, POSTS.findIndex(p => p.id === id)), p = POSTS[i], body = POST_BODIES[p.id];
+    const more = POSTS.filter(x => x.id !== p.id).slice(0, 3);
     const fmt = d => new Date(d).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
-    const shared = x => x.topics.filter(t => p.topics.includes(t)).length;
-    const related = POSTS.filter(x => x !== p).sort((a, b) => shared(b) - shared(a)).slice(0, 3);
-    const url = `${SITE.url}/post?p=${p.id}`;
-    const clean = t => t.replace(/<[^>]+>/g, '').replace(/^\d+\.\s*/, '');
-    const heads = [...body.html.matchAll(/<h2 id="([^"]+)">(.*?)<\/h2>/g)].map(m => [m[1], clean(m[2])]);
-    root.innerHTML = `
-    <section class="page-head"><div class="container"><div class="page-head-in">
-      <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span aria-hidden="true">/</span><a href="blog.html">Insights</a><span aria-hidden="true">/</span><span aria-current="page">${p.cat}</span></nav>
-      <h1 class="h1">${p.title}</h1><p class="lead">${p.excerpt}</p>
-      <span class="byline">${pic(person.img, { alt: '', sizes: '44px', eager: true })}<span><b>${p.author}</b>${p.role} · <time datetime="${p.date}">${fmt(p.date)}</time> · ${p.read}</span></span>
-    </div></div></section>
-    <div class="container mt-32"><div class="post-banner">${body.banner ? pic(body.banner, { alt: '', sizes: '(max-width: 1240px) 94vw, 1200px', eager: true }) : ''}</div></div>
-    <div class="section" style="padding-top:clamp(2rem,1.5rem + 2vw,4rem)"><div class="container post-layout">
-      <article>
-        <div class="prose">${body.html}</div>
-        <div class="author-box">${pic(person.img, { alt: `Portrait of ${p.author}`, sizes: '88px' })}<div><p><b>${p.author}</b>, ${p.role}</p><p class="small muted">${AUTHOR_NOTES[p.author] || person.about}</p></div></div>
-        <div class="share"><span class="muted">Share</span><a class="btn btn--secondary btn--sm" target="_blank" rel="noopener" href="https://wa.me/?text=${encodeURIComponent(p.title + ' ' + url)}">WhatsApp<span class="sr-only"> (opens in a new tab)</span></a><a class="btn btn--secondary btn--sm" target="_blank" rel="noopener" href="https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}">LinkedIn<span class="sr-only"> (opens in a new tab)</span></a><button class="btn btn--secondary btn--sm" type="button" id="copy">Copy link</button></div>
-      </article>
-      ${heads.length > 2 ? `<aside class="post-aside"><nav class="post-toc" aria-labelledby="tocT"><h2 id="tocT">In this guide</h2>${heads.map(([h, t]) => `<a href="#${h}">${t}</a>`).join('')}</nav></aside>` : ''}
-    </div></div>
-    <section class="section section--tint" aria-labelledby="relT"><div class="container"><div class="section-head section-head--row"><div><h2 class="h2" id="relT">Related reading</h2></div><a class="go" href="blog.html">All guides ${ICONS.arrow}</a></div>
-      <div class="grid grid--3">${related.map(m => `<a class="post-card" href="post.html?p=${m.id}"><div class="shot">${pic(m.img, { alt: '', sizes: '(max-width: 860px) 94vw, 380px' })}</div><div class="txt"><span class="meta">${m.cat} · ${m.read}</span><h3>${m.title}</h3><p>${m.author}</p></div></a>`).join('')}</div></div></section>
-    <section class="section" aria-labelledby="ctaTitle"><div class="container"><div class="cta-band"><div><h2 class="h1" id="ctaTitle">${cta.title}</h2><p class="lead">${cta.text}</p></div>
-      <div class="ask"><a class="btn btn--primary" href="${cta.href}">${cta.label} ${ICONS.arrow}</a><a class="wa-link" href="${wa('Hi Avora! I read "' + p.title + '" and have a question.')}" target="_blank" rel="noopener">${ICONS.wa} WhatsApp us for a quick reply</a></div></div></div></section>`;
-
-    setMeta({
-      title: `${p.title} | Avora Brands`, description: p.excerpt, path: `post?p=${p.id}`, image: p.img,
-      jsonLd: { '@type': 'BlogPosting', headline: p.title, description: p.excerpt, datePublished: p.date, image: `${SITE.url}/${p.img}`, author: { '@type': 'Person', name: p.author, jobTitle: p.role }, publisher: { '@type': 'Organization', name: 'Avora Brands', url: SITE.url }, mainEntityOfPage: url }
-    });
-    const bar = document.querySelector('.progress');
-    addEventListener('scroll', () => { const h = document.documentElement; bar.style.transform = `scaleX(${h.scrollTop / Math.max(1, h.scrollHeight - innerHeight)})`; }, { passive: true });
-    document.getElementById('copy').addEventListener('click', e => navigator.clipboard?.writeText(url).then(() => { e.target.textContent = 'Link copied'; }));
+    document.title = `${p.title}, Avora Brands Insights`;
+    document.querySelector('meta[name=description]').content = p.excerpt;
+    const url = location.href;
+    document.getElementById('post').innerHTML = `
+    <section class="page-hero" style="padding-bottom:130px">
+      <div class="stars"></div>
+      <div class="container on-dark" style="max-width:900px">
+        <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><a href="blog.html">Insights</a><span>/</span><span>${p.cat}</span></nav>
+        <span class="chip chip--gold reveal">${p.cat}</span>
+        <h1 class="h1 mt-24" data-split>${p.title}</h1>
+        <p class="mt-24 reveal" style="color:#A9B1C7;font-weight:600">${p.author} · ${fmt(p.date)} · ${body.read}</p>
+      </div>
+    </section>
+    <div class="container"><div class="post-banner reveal-scale">${body.banner ? `<img src="${body.banner}" alt="">` : ''}</div></div>
+    <article class="section" style="padding-top:72px"><div class="container">
+      <div class="prose">${body.html}</div>
+      <div class="share"><span class="muted" style="font-weight:700">Share:</span>
+        <a class="btn btn--sm btn--ghost" target="_blank" rel="noopener" href="https://wa.me/?text=${encodeURIComponent(p.title + ' ' + url)}">WhatsApp</a>
+        <a class="btn btn--sm btn--ghost" target="_blank" rel="noopener" href="https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}">LinkedIn</a>
+        <button class="btn btn--sm btn--ghost" type="button" id="copy">Copy link</button></div>
+      <div class="post-cta"><div><b style="font-size:20px">Need this done for your business?</b><p>Our studio handles it end-to-end, free 15-minute call.</p></div><a class="btn btn--gold" href="contact.html">Get a quote <i data-i="arrow"></i></a></div>
+    </div></article>
+    <section class="section section--white"><div class="container">
+      <div class="sec-head"><div><span class="eyebrow">Keep reading</span><h2 class="h2 mt-8">More insights</h2></div><a class="btn btn--ghost" href="blog.html">All articles</a></div>
+      <div class="grid g-3">${more.map(m => `<a class="post-card reveal" href="post.html?p=${m.id}"><div class="cover" style="padding:0"><img src="${m.img}" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div><div class="body"><span class="chip" style="align-self:flex-start">${m.cat}</span><h3 class="h4">${m.title}</h3><div class="meta"><span>${m.author}</span></div></div></a>`).join('')}</div>
+    </div></section>`;
   })();
+</script>
+<script src="assets/js/site.js"></script>
+<script>
+  const bar = document.querySelector('.progress');
+  addEventListener('scroll', () => { const h = document.documentElement; bar.style.width = (h.scrollTop / (h.scrollHeight - innerHeight) * 100) + '%'; }, { passive: true });
+  document.getElementById('copy')?.addEventListener('click', e => { navigator.clipboard?.writeText(location.href); e.target.textContent = 'Copied ✓'; });
 </script>
 </body>
 </html>

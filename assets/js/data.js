@@ -1,26 +1,11 @@
 /* ============================================================
    Avora Brands, site content
-   Edit words, people, projects and contact details here.
-   Originals live in images/. After adding or replacing one, run
-   `node tools/build-images.mjs` to make the resized copies.
+   Images are served from the live site so nothing has to be re-uploaded.
    ============================================================ */
 const IMG = 'images/';
 const img = (f) => IMG + encodeURI(f);
 
-/* Responsive image markup from the generated list in images.js */
-window.pic = (src, { alt = '', sizes = '100vw', eager = false, cls = '', attrs = '' } = {}) => {
-  const file = decodeURI(src).replace(/^images\//, ''), meta = (window.IMAGES || {})[file];
-  const esc = alt.replace(/&(?!\w+;)/g, '&amp;').replace(/"/g, '&quot;');
-  const load = eager ? 'fetchpriority="high"' : 'loading="lazy" decoding="async"';
-  const c = cls ? ` class="${cls}"` : '';
-  if (!meta) return `<img src="${src}" alt="${esc}"${c} ${load} ${attrs}>`;
-  const [w, h, widths] = meta, url = x => `images/opt/${encodeURI(file.replace(/\.\w+$/, ''))}-${x}.webp`;
-  const mid = widths.find(x => x >= 900) || widths[widths.length - 1];
-  return `<img src="${url(mid)}" srcset="${widths.map(x => `${url(x)} ${x}w`).join(', ')}" sizes="${sizes}" width="${w}" height="${h}" alt="${esc}"${c} ${load} ${attrs}>`;
-};
-
 window.SITE = {
-  url: 'https://www.avorabrands.in',
   phone: '+91 90194 40645',
   phoneRaw: '919019440645',
   email: 'hello.avorabrands@gmail.com', // TODO: switch to hello@avorabrands.in once the domain inbox is live
@@ -28,10 +13,9 @@ window.SITE = {
   hours: 'Mon – Sat · 9:00 AM – 6:00 PM',
   instagram: 'https://www.instagram.com/avorabrands',
   linkedin: 'https://www.linkedin.com/company/124923992/',
-  // Project enquiries, internship applications and the newsletter are emailed through Web3Forms.
-  // This access key decides which inbox receives them (hello.avorabrands@gmail.com).
-  // It is meant to be visible in website code. To change the inbox, create a new key at web3forms.com.
-  web3formsKey: '41ce5060-83f4-4e5b-9f97-0274f36831b9'
+  // Newsletter: FormSubmit emails each new subscriber to this inbox and sends the subscriber a welcome email.
+  // The first sign-up triggers a one-time activation email to this inbox; click it once to switch the form on.
+  newsletterInbox: 'hello.avorabrands@gmail.com'
 };
 
 window.wa = (msg) => `https://wa.me/${SITE.phoneRaw}?text=${encodeURIComponent(msg)}`;
@@ -51,7 +35,7 @@ window.PROJECTS = [
   {
     id: 'mist-salon', client: 'MiST Unisex Salon', title: 'A premium salon, now bookable online', cat: 'website',
     live: 'https://mistunisexsalon.com',
-    focus: 'left center', cover: img('mist-home.jpg'), gallery: ['mist-about.jpg', 'mist-services.jpg', 'mist-why.jpg'].map(img),
+    cover: img('mist-home.jpg'), gallery: ['mist-about.jpg', 'mist-services.jpg', 'mist-why.jpg'].map(img),
     summary: 'A website for a premium unisex salon in Kurnool covering hair, skin, makeup, bridal and clinical treatments, with online appointment booking.',
     outcome: 'A salon site that feels as premium as the studio',
     industry: 'Beauty & Wellness', services: 'Website Design, Appointment Booking, Brand Styling', timeline: 'Live now', year: '2026',
@@ -231,44 +215,26 @@ window.PROJECTS = [
   }
 ];
 
-/* People. `about` is one or two plain sentences on what they are responsible for. */
 window.TEAM = {
-  founder: { name: 'Reddy Pavan M', role: 'Founder & CEO', img: img('founder.jpg'),
-    about: 'UI/UX designer. Shapes the direction of each project.',
-    skills: 'UI/UX · Product design · Direction' },
+  founder: { name: 'Reddy Pavan M', role: 'Founder & CEO', img: img('founder.jpg') },
   cofounders: [
-    { name: 'Namratha E', role: 'Co-Founder & Creative Director', img: img('about-namratha.jpg'),
-      about: 'Leads design: brand identities, app screens and print.' },
-    { name: 'Praveen Devarakonda', role: 'Co-Founder & Technical Lead', img: img('about-praveen-v2.jpg'),
-      about: 'Builds our websites, app prototypes and the tech behind them.' }
+    { name: 'Namratha E', role: 'Co-Founder & Creative Director', img: img('about-namratha.jpg') }
   ],
   team: [
-    { name: 'Vignesh', role: 'Business Manager', img: img('about-vignesh.jpg'),
-      about: 'Handles quotes, timelines, client care and delivery.' }
+    { name: 'Praveen Devarakonda', role: 'Co-Founder & Technical Lead', img: img('about-praveen-v2.jpg') },
+    { name: 'Vignesh', role: 'Business Manager', img: img('about-vignesh.jpg') }
   ]
 };
-window.PEOPLE = [TEAM.founder, ...TEAM.cofounders, ...TEAM.team];
-
-/* About page timeline. Every date comes from a published project. Add founding and
-   studio dates here once confirmed (leave `when` as a word if there is no exact date). */
-window.MILESTONES = [
-  { when: 'Roots', title: 'Started in Madanapalle', text: 'Branding and print for local businesses.' },
-  { when: 'Aug 2025', title: 'Local Service Finder', text: 'Full identity, then the website in September.', href: 'case.html?p=localservice-brand' },
-  { when: 'Nov 2025', title: 'CashAlert app', text: 'App design for a payment voice-alert product.', href: 'case.html?p=cashalert-app' },
-  { when: '2026', title: 'Sri Veluguvani and Vydehi', text: 'A 64-page Telugu monthly and 30+ course brochures.', href: 'case.html?p=vydehi' },
-  { when: 'Today', title: 'Studio in HSR Layout, Bengaluru', text: 'Growth plans and Avora Kids added to the range.' }
-];
 
 window.REVIEWS = [
-  { name: 'Janagam Hemu', text: 'Very satisfied with Avora Brands. Great communication, professional service, and outstanding quality. The entire process was smooth and hassle-free. Would definitely recommend them to others.', source: 'Google review' },
-  { name: 'Devarakonda Janardhan', text: 'Great experience with Avora Brands. Professional team and quality work. Highly recommended.', source: 'Google review' },
-  { name: 'Sanjay K', text: 'I really liked the website\'s design and smooth user experience. It reflects professionalism and creativity. Wishing the Avora Brands team great success in helping businesses build strong digital identities.', source: 'Google review' }
+  { name: 'Janagam Hemu', text: 'Very satisfied with Avora Brands. Great communication, professional service, and outstanding quality. The entire process was smooth and hassle-free. Would definitely recommend them to others.', color: '#E2475B' },
+  { name: 'Devarakonda Janardhan', text: 'Great experience with Avora Brands. Professional team and quality work. Highly recommended.', color: '#2F6FD6' },
+  { name: 'Sanjay K', text: 'I really liked the website\'s design and smooth user experience. It reflects professionalism and creativity. Wishing the Avora Brands team great success in helping businesses build strong digital identities.', color: '#7A4DD8' }
 ];
 
 window.POSTS = [
  {
   "id": "website-build",
-  "topics": ["web", "seo", "mobile"],
   "title": "How We Build Fast Websites for Small Businesses",
   "cat": "Web Design",
   "excerpt": "Why simple builds, light images and clean SEO basics matter more than fancy tools, with lessons from our own site and the MiST Unisex Salon site.",
@@ -280,7 +246,6 @@ window.POSTS = [
  },
  {
   "id": "brand-identity",
-  "topics": ["brand", "logo", "colour"],
   "title": "How to Build a Strong Brand Identity for Your Small Business",
   "cat": "Branding",
   "excerpt": "A consistent brand identity builds trust and recognition. A step-by-step guide to creating a brand that stands out in a crowded market.",
@@ -292,7 +257,6 @@ window.POSTS = [
  },
  {
   "id": "ux-mistakes",
-  "topics": ["app", "mobile", "web"],
   "title": "5 UX Mistakes That Are Hurting Your App's Retention",
   "cat": "UI/UX",
   "excerpt": "Retention starts at the first interaction. The most common UX mistakes in mobile apps, and how to fix them before they cost you users.",
@@ -304,7 +268,6 @@ window.POSTS = [
  },
  {
   "id": "cmyk-vs-rgb",
-  "topics": ["print", "colour"],
   "title": "CMYK vs RGB: What Every Business Owner Must Know Before Printing",
   "cat": "Print",
   "excerpt": "Colours look different on screen and on paper. The difference, and why getting it wrong can ruin your printed materials.",
@@ -316,7 +279,6 @@ window.POSTS = [
  },
  {
   "id": "colour-psychology",
-  "topics": ["colour", "logo", "brand"],
   "title": "The Psychology of Colour in Logo Design",
   "cat": "Graphic Design",
   "excerpt": "Colours trigger emotions and influence buying decisions. How to choose the right palette for your logo, and what each colour says.",
@@ -328,30 +290,6 @@ window.POSTS = [
  }
 ];
 
-/* Closing action on an article, by category */
-window.POST_CTAS = {
-  'Web Design': { title: 'Planning a website?', text: 'See what a website project includes, how long it takes and how we price it.', label: 'See website design', href: 'design.html#website' },
-  'Branding': { title: 'Building your brand?', text: 'See what a logo or full identity includes and how long each takes.', label: 'See branding services', href: 'design.html#branding' },
-  'UI/UX': { title: 'Designing or fixing an app?', text: 'See how we run app UI/UX, from research to developer-ready screens.', label: 'See app design', href: 'design.html#app' },
-  'Print': { title: 'Getting something printed?', text: 'Build a list of what you need. We check every file and share a proof before printing.', label: 'Browse print products', href: 'print.html#catalogue' },
-  'Graphic Design': { title: 'Choosing colours for a logo?', text: 'See how we build a colour system that works on screen and in print.', label: 'See branding services', href: 'design.html#branding' }
-};
-
-/* Short expertise line shown with each author */
-window.AUTHOR_NOTES = {
-  'Reddy Pavan M': 'Founder of Avora Brands and a UI/UX designer. Writes about apps, usability and brand.',
-  'Namratha E': 'Leads Avora’s design studio across identity, app screens and print.',
-  'Praveen Devarakonda': 'Builds Avora’s websites and app prototypes. Writes about speed, SEO basics and launches.'
-};
-
-/* Internships. Shared terms live in JOB_TERMS so they only need editing once. */
-window.JOB_TERMS = {
-  type: 'Internship',
-  pay: 'Stipend, based on performance',
-  remote: '100% remote, from anywhere in India',
-  commitment: 'Weekly hours agreed on your call',
-  reply: 'Within 2 working days'
-};
 window.JOBS = [
   { title: 'Graphic Design Intern', dur: '2–3 months', exp: 'Students & freshers', tools: 'Illustrator, Photoshop', where: 'Remote · India' },
   { title: 'UI/UX Design Intern', dur: '2–3 months', exp: 'Students & freshers', tools: 'Figma, prototyping', where: 'Remote · India' },

@@ -147,15 +147,6 @@
           "value": "text/html; charset=utf-8"
         }
       ]
-    },
-    {
-      "source": "/images/opt/(.*)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=2592000, stale-while-revalidate=86400"
-        }
-      ]
     }
   ]
 }
