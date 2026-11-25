@@ -13,9 +13,10 @@ window.SITE = {
   hours: 'Mon – Sat · 9:00 AM – 6:00 PM',
   instagram: 'https://www.instagram.com/avorabrands',
   linkedin: 'https://www.linkedin.com/company/124923992/',
-  // Newsletter: FormSubmit emails each new subscriber to this inbox and sends the subscriber a welcome email.
-  // The first sign-up triggers a one-time activation email to this inbox; click it once to switch the form on.
-  newsletterInbox: 'hello.avorabrands@gmail.com'
+  // Project enquiries, internship applications and the newsletter are emailed through Web3Forms.
+  // This access key decides which inbox receives them (hello.avorabrands@gmail.com).
+  // It is meant to be visible in website code. To change the inbox, create a new key at web3forms.com.
+  web3formsKey: '41ce5060-83f4-4e5b-9f97-0274f36831b9'
 };
 
 window.wa = (msg) => `https://wa.me/${SITE.phoneRaw}?text=${encodeURIComponent(msg)}`;

@@ -220,36 +220,52 @@ $$('[data-scroller]').forEach(s => {
   if (nav) { const [p, n] = $$('button', nav); const w = () => s.querySelector('.work-card')?.offsetWidth + 22 || 400; p.onclick = () => s.scrollBy({ left: -w(), behavior: 'smooth' }); n.onclick = () => s.scrollBy({ left: w(), behavior: 'smooth' }); }
 });
 
-/* ---------- forms → WhatsApp (no backend needed) ---------- */
-$$('form[data-wa]').forEach(f => f.addEventListener('submit', e => {
+/* ---------- email through Web3Forms. Throws if it was not accepted ---------- */
+window.sendEmail = async fields => {
+  /* plain form data: no cross-site preflight request, so there is less that can be blocked */
+  const body = new FormData();
+  Object.entries({ access_key: SITE.web3formsKey, from_name: 'Avora Brands website', ...fields }).forEach(([k, v]) => body.append(k, v));
+  const r = await fetch('https://api.web3forms.com/submit', { method: 'POST', keepalive: true, headers: { Accept: 'application/json' }, body });
+  const d = await r.json().catch(() => ({}));
+  if (!r.ok || d.success !== true) throw new Error(d.message || 'failed');
+};
+const safe = t => String(t).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+/* ---------- quote forms: one click emails the enquiry and opens WhatsApp with the same message ---------- */
+$$('form[data-wa]').forEach(f => f.addEventListener('submit', async e => {
   e.preventDefault();
   if (!f.reportValidity()) return;
-  const fd = new FormData(f), lines = [f.dataset.wa];
-  for (const k of new Set(fd.keys())) { const v = fd.getAll(k).map(String).filter(s => s.trim()).join(', '); if (v) lines.push(`${k}: ${v}`); }
-  window.open(wa(lines.join('\n')), '_blank', 'noopener');
-  const ok = $('.form-ok', f); if (ok) { ok.style.display = 'block'; }
+  const btn = $('[type=submit]', f), label = btn.innerHTML, ok = $('.form-ok', f), d = {};
+  const fd = new FormData(f);
+  for (const k of new Set(fd.keys())) { const v = fd.getAll(k).map(String).filter(s => s.trim()).join(', '); if (v) d[k] = v; }
+  const chat = wa([f.dataset.wa, ...Object.entries(d).map(([k, v]) => `${k}: ${v}`)].join('\n'));
+  const show = (html, good) => { if (!ok) return; ok.setAttribute('role', 'status'); ok.classList.toggle('is-err', !good); ok.innerHTML = html; ok.style.display = 'block'; };
+  btn.disabled = true; btn.textContent = 'Sending…'; if (ok) ok.style.display = 'none';
+  /* start the email first, then open WhatsApp in the same click so browsers do not block it */
+  const mail = sendEmail({ subject: `Project enquiry: ${d.Service || d.Need || 'Website'}, ${d.Name}`, ...(d.Email ? { replyto: d.Email } : {}), ...d, Page: location.pathname });
+  window.open(chat, '_blank', 'noopener');
+  try {
+    await mail;
+    show(`Thanks, ${safe(d.Name.split(' ')[0])}. Your enquiry is in our inbox. WhatsApp also opened with your message, press send there for a faster reply.`, true);
+    f.reset();
+  } catch (_) {
+    show(`The email didn't go through. Please <a href="${chat}" target="_blank" rel="noopener">send it on WhatsApp</a> or email <a href="mailto:${SITE.email}">${SITE.email}</a>.`, false);
+  }
+  btn.disabled = false; btn.innerHTML = label;
 }));
-/* ---------- Newsletter: real welcome email via FormSubmit ---------- */
+/* ---------- Newsletter: each sign-up is emailed to our inbox ---------- */
 $$('[data-news]').forEach(f => f.addEventListener('submit', async e => {
   e.preventDefault();
-  const input = f.querySelector('input[type=email]'), btn = f.querySelector('button'), email = input.value.trim();
+  const input = f.querySelector('input[type=email]'), btn = f.querySelector('button'), email = input.value.trim(), label = btn.textContent;
   if (!input.checkValidity()) { input.reportValidity(); return; }
   btn.disabled = true; btn.textContent = 'Sending…';
   const note = (html, ok) => { let n = f.nextElementSibling; if (!n || !n.classList.contains('news-note')) { n = document.createElement('p'); f.after(n); } n.className = 'news-note ' + (ok ? 'ok' : 'err'); n.innerHTML = html; };
   try {
-    const r = await fetch('https://formsubmit.co/ajax/' + SITE.newsletterInbox, {
-      method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify({
-        email, _subject: 'New newsletter subscriber, Avora Brands', _template: 'box', _captcha: 'false',
-        _autoresponse: "Hi there,\n\nThanks for joining the Avora Brands list! Once a month we'll send you practical branding, print and design tips for growing businesses, no spam, ever.\n\nNeed something designed or printed sooner? Just reply to this email or WhatsApp us on " + SITE.phone + ".\n\nWarm wishes,\nTeam Avora Brands\n" + SITE.address
-      })
-    });
-    const d = await r.json().catch(() => ({}));
-    if (!r.ok || String(d.success) === 'false') throw new Error(d.message || 'failed');
-    f.innerHTML = '<span class="news-ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>You\'re in! Check your inbox for a welcome email.</span>';
-    note('Sent to <b>' + email.replace(/[<>&"]/g, '') + '</b>. Not there? Check Promotions or Spam.', true);
+    await sendEmail({ subject: 'New newsletter subscriber, Avora Brands', email, Page: location.pathname });
+    f.innerHTML = '<span class="news-ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>You\'re on the list!</span>';
+    note('Thanks, <b>' + safe(email) + '</b> is on the list.', true);
   } catch (err) {
-    btn.disabled = false; btn.textContent = 'Join';
+    btn.disabled = false; btn.textContent = label;
     note('Couldn\'t subscribe right now. Please try again, or <a href="' + wa('Hi Avora! Please add me to your monthly tips list: ' + email) + '" target="_blank" rel="noopener">join on WhatsApp</a>.', false);
   }
 }));

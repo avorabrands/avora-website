@@ -403,6 +403,9 @@ h1,h2,h3,h4,h5,h6{font-family:var(--font-head)}
 .on-dark .form-note{color:#8F98B1}
 .form-ok{display:none;padding:16px 18px;border-radius:14px;background:rgba(46,204,113,.12);color:#1B7F45;font-weight:600}
 .on-dark .form-ok{color:#7BE3A6}
+.form-ok.is-err{background:rgba(214,60,60,.1);color:#B42318}
+.on-dark .form-ok.is-err{color:#FFB4A8}
+.form-ok a{color:inherit;text-decoration:underline}
 
 /* ---------- page hero (inner pages) ---------- */
 .page-hero{position:relative;background:radial-gradient(900px 500px at 85% 0%,rgba(14,134,220,.22),transparent 60%),radial-gradient(700px 400px at 0% 100%,rgba(14,134,220,.16),transparent 60%),var(--navy-950);color:#fff;margin-top:-78px;padding:190px 0 110px;overflow:hidden}

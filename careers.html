@@ -213,7 +213,7 @@
       <aside class="ap-side reveal">
         <span class="eyebrow">Apply</span>
         <h2 class="h2 mt-16">Apply <span class="serif gold-text">in one message.</span></h2>
-        <p class="ap-lead">Fill the form and your application goes straight to our inbox. You will get a confirmation email, and we reply within 2 days.</p>
+        <p class="ap-lead">Fill the form and your application goes straight to our inbox. We reply within 2 days.</p>
         <ol class="ap-steps">
           <li><span>1</span><div><b>Send your application</b><small>Takes about 2 minutes</small></div></li>
           <li><span>2</span><div><b>We review your work</b><small>Reply within 2 days</small></div></li>
@@ -251,7 +251,7 @@
   roles.innerHTML = [...JOBS.map(j => j.title), 'Other'].map((r, k) => `<label><input type="radio" name="Role" value="${r}" ${k ? '' : 'required'}><span>${r.replace(' Intern', '')}</span></label>`).join('');
   document.getElementById('jobs').addEventListener('click', e => { const a = e.target.closest('[data-role]'); if (!a) return; const r = roles.querySelector(`input[value="${a.dataset.role}"]`); if (r) r.checked = true; });
 
-  /* application → email via FormSubmit (same inbox as the newsletter) */
+  /* application → email via Web3Forms (key in data.js) */
   (() => {
     const f = document.getElementById('applyForm'), msg = f.querySelector('.ap-msg'), btn = f.querySelector('.ap-send'), lbl = btn.querySelector('span');
     const show = (html, ok) => { msg.className = 'ap-msg ' + (ok ? 'ok' : 'err'); msg.innerHTML = html; };
@@ -266,22 +266,16 @@
       const fd = new FormData(f), d = Object.fromEntries(fd.entries());
       btn.disabled = true; lbl.textContent = 'Sending…';
       try {
-        const r = await fetch('https://formsubmit.co/ajax/' + SITE.newsletterInbox, {
-          method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-          body: JSON.stringify({
-            _subject: `Internship application: ${d.Role}, ${d.Name}`, _template: 'table', _captcha: 'false', _replyto: d.email,
-            Name: d.Name, Email: d.email, Phone: d.Phone, Internship: d.Role, 'Currently': d.Status, 'Portfolio / resume': d.Portfolio, 'Why Avora': d.Note || '-',
-            _autoresponse: `Hi ${d.Name},\n\nThanks for applying for the ${d.Role} internship at Avora Brands. We have your application and will reply within 2 working days.\n\nTeam Avora Brands`
-          })
+        await sendEmail({
+          subject: `Internship application: ${d.Role}, ${d.Name}`, replyto: d.email,
+          Name: d.Name, Email: d.email, Phone: d.Phone, Internship: d.Role, 'Currently': d.Status, 'Portfolio / resume': d.Portfolio, 'Why Avora': d.Note || '-'
         });
-        const j = await r.json().catch(() => ({}));
-        if (!r.ok || String(j.success) === 'false') throw new Error(j.message || 'failed');
         f.reset(); lbl.textContent = 'Application sent';
-        show(`Thanks, ${d.Name.split(' ')[0]}! Your application is in our inbox. Check ${d.email.replace(/[<>&"]/g, '')} for a confirmation.`, true);
+        show(`Thanks, ${d.Name.split(' ')[0].replace(/[<>&"]/g, '')}! Your application is in our inbox. We reply within 2 working days.`, true);
       } catch (err) {
         btn.disabled = false; lbl.textContent = 'Send application';
         const body = encodeURIComponent(`Name: ${d.Name}\nPhone: ${d.Phone}\nInternship: ${d.Role}\nCurrently: ${d.Status}\nPortfolio: ${d.Portfolio}\n\n${d.Note || ''}`);
-        show(`Couldn't send right now. Please <a href="https://mail.google.com/mail/?view=cm&fs=1&to=${SITE.newsletterInbox}&su=${encodeURIComponent('Internship application: ' + d.Role)}&body=${body}" target="_blank" rel="noopener">send it by email</a> instead.`, false);
+        show(`Couldn't send right now. Please <a href="https://mail.google.com/mail/?view=cm&fs=1&to=${SITE.email}&su=${encodeURIComponent('Internship application: ' + d.Role)}&body=${body}" target="_blank" rel="noopener">send it by email</a> instead.`, false);
       }
     });
   })();
