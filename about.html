@@ -14,9 +14,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/site.css">
 <style>
-  .story{display:grid;grid-template-columns:.8fr 1fr;gap:56px;align-items:start}
-  .story .prose{margin:0;max-width:none;font-size:16px}.story .prose p{margin-bottom:12px}.story .h2{font-size:clamp(28px,3vw,40px)}.story .prose.mt-32{margin-top:20px}
-  .story{align-items:stretch}.story-img{position:relative;border-radius:var(--radius-lg);overflow:hidden;min-height:420px}.story-img img{position:absolute;inset:0}
+  .story{display:grid;grid-template-columns:.72fr 1fr;gap:56px;align-items:start}
+  .story .prose{margin:0;max-width:none;font-size:16px;line-height:1.65}.story .prose p{margin-bottom:10px}.story .prose blockquote{font-size:21px;line-height:1.4;margin:18px 0}.story .h2{font-size:clamp(28px,3vw,40px)}.story .prose.mt-32{margin-top:16px}
+  /* photo fits the screen and stays in view while the story is read */
+  .story-img{position:sticky;top:96px;height:min(600px,calc(100vh - 120px));border-radius:var(--radius-lg);overflow:hidden;min-height:420px}.story-img img{position:absolute;inset:0}
   .story-img img{width:100%;height:100%;object-fit:cover;object-position:top}
   .story-img .chip{position:absolute;left:18px;bottom:18px;background:rgba(255,255,255,.16);color:#fff;border:1px solid rgba(255,255,255,.35);backdrop-filter:blur(14px) saturate(1.4);-webkit-backdrop-filter:blur(14px) saturate(1.4);font-weight:700;box-shadow:0 10px 30px -10px rgba(0,0,0,.5)}
   @media (max-width:900px){.story{grid-template-columns:1fr;gap:32px}.story-img{position:relative;top:0;max-width:none;min-height:0;height:clamp(380px,118vw,560px);aspect-ratio:auto;max-height:none}.story-img img{object-position:center 12%}.story-img .np{left:12px;right:auto;bottom:12px;padding:9px 14px;border-radius:14px}.story-img .np b{font-size:16px}.story-img .np span{font-size:12.5px}}
@@ -38,7 +39,7 @@
       <span class="eyebrow reveal">About Avora</span>
       <h1 class="ax-title reveal">
         A small team
-        <span class="ax-faces"><img src="images/founder.jpg" alt="Reddy Pavan M"><img src="images/about-namratha.jpg" alt="Namratha E"><img src="images/about-praveen-v2.jpg" alt="Praveen Devarakonda"><img src="images/about-vignesh.jpg" alt="Vignesh"></span>
+        <span class="ax-faces"><img src="images/founder.jpg" alt="Reddy Pavan M"><img src="images/about-namratha.jpg" alt="Namratha E"><img src="images/about-praveen-v2.jpg" alt="Praveen Devarakonda"><img src="images/about-vignesh-v2.webp" alt="Vignesh"></span>
         in Bengaluru, building <span class="serif gold-text">brands</span>
         <span class="ax-pill w"><img src="images/cashalert-app-thumb.jpg" alt="CashAlert app design"></span>
         and <span class="serif gold-text">gifts</span>
@@ -100,7 +101,7 @@
             <ul class="tm-skills"><li>Web development</li><li>App builds</li><li>Hosting &amp; tech</li></ul></div>
         </article>
         <article class="tm reveal" style="--d:.2s">
-          <div class="tm-img"><img src="images/about-vignesh.jpg" alt="Vignesh, Business Manager" loading="lazy"><span class="tm-tag">Business</span></div>
+          <div class="tm-img"><img src="images/about-vignesh-v2.webp" alt="Vignesh, Business Manager" loading="lazy"><span class="tm-tag">Business</span></div>
           <div class="tm-body"><h3>Vignesh</h3><p class="tm-role">Business Manager</p>
             <p>Your first point of contact: quotes, timelines and making sure every order reaches you on the agreed date.</p>
             <ul class="tm-skills"><li>Quotes &amp; planning</li><li>Client care</li><li>Delivery</li></ul></div>

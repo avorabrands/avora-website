@@ -243,7 +243,7 @@ window.TEAM = {
   ],
   team: [
     { name: 'Praveen Devarakonda', role: 'Co-Founder & Technical Lead', img: img('about-praveen-v2.jpg') },
-    { name: 'Vignesh', role: 'Business Manager', img: img('about-vignesh.jpg') }
+    { name: 'Vignesh', role: 'Business Manager', img: img('about-vignesh-v2.webp') }
   ]
 };
 
