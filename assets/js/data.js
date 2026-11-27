@@ -60,6 +60,20 @@ window.PROJECTS = [
     deliverables: ['Responsive website design', 'Hero slider and brand styling', 'Treatment pages and menu', 'Appointment booking popup and form', 'Specialist and results sections', 'Branch pages and maps']
   },
   {
+    id: 'convertly', client: 'Avora Convertly', title: 'Free file tools that run in the browser', cat: 'website',
+    live: 'https://convertly.avorabrands.in',
+    cover: img('convertly-home.jpg'), gallery: ['convertly-tools.jpg', 'convertly-tool.jpg', 'convertly-dark.jpg'].map(img),
+    short: 'Our free file converter for students, with 47 browser tools.',
+    summary: 'Our own free file converter for students: 47 tools for PDF, Word, slides, images, audio and video, with no sign-up and no uploads.',
+    outcome: 'Study files in the right format, in a few clicks',
+    industry: 'Education & Productivity', services: 'Web App Design, Development, SEO', timeline: 'Live now', year: '2026',
+    overview: 'Avora Convertly is our own product: a free file converter built for students. It covers the formats students deal with every day, from PDFs and Word files to slides, images, audio and video.',
+    challenge: 'Most free converters are slow, full of ads, add watermarks or ask for an account, and students upload their files without knowing where they go. Convertly had to be fast, honest about what each tool does, and keep files private.',
+    solution: 'We built a clean web app where every conversion runs in the browser, so files are never uploaded. A single drop zone suggests the right tools, every tool is labelled full support, basic layout or demo, and each one gets its own page with steps, uses and FAQs so students can find it on Google.',
+    results: [['Tools', '47 free converters and study tools'], ['Privacy', 'Files convert on the device, never uploaded'], ['Access', 'No sign-up, no watermark, no daily limit'], ['Search', 'A page for every tool, with steps and FAQs']],
+    deliverables: ['Web app design and development', 'Drop-zone converter and tool finder', 'Tool pages with steps and FAQs', 'Light and dark mode', 'Privacy, terms and help pages', 'SEO and link previews']
+  },
+  {
     id: 'tiara', client: 'VTIARA Hair & Skin Clinic', title: 'Clinical trust, in a thumb-stopping ad', cat: 'social',
     cover: img('tiara-social1.jpg'), gallery: ['tiara-social2.jpg', 'tiara-social3.jpg', 'tiara-social4.jpg'].map(img),
     short: 'Instagram and display ads for an Indiranagar skin clinic.',

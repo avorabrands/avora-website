@@ -8,7 +8,7 @@ Static site: plain HTML + one CSS file + two JS files. No build step.
 | `index.html` | Home — hero, gifts & merch preview, services, work, process, reviews, founder, FAQ, quote form |
 | `design.html` | Design Studio — 6 services, packages, work, process, FAQ |
 | `print.html` | Print & Merch — best-seller prices, full catalogue (7 categories), process, FAQ |
-| `work.html` / `case.html?p=<id>` | 16 case studies (one template, content in `assets/js/data.js`) |
+| `work.html` / `case.html?p=<id>` | 17 case studies (one template, content in `assets/js/data.js`) |
 | `about.html` | Story, values, founders, team, milestones, locations |
 | `blog.html` / `post.html?p=<id>` | Insights page + 5 articles (Praveen's 2 removed, Vignesh's gifting checklist added) (bodies in `assets/js/posts-content.js`) |
 | `careers.html` | Culture, open roles, internship, application form |
